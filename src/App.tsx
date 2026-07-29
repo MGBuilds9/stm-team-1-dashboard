@@ -287,7 +287,7 @@ function TeamMark({ compact = false }: { compact?: boolean }) {
       </div>
       {!compact && (
         <div className="min-w-0">
-          <p className="font-display truncate text-[1.05rem] leading-none uppercase">
+          <p className="font-display line-clamp-2 text-[0.95rem] leading-tight uppercase">
             {snapshot.team.name}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
