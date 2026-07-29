@@ -1,9 +1,12 @@
+import fs from "node:fs"
+
 import AxeBuilder from "@axe-core/playwright"
 import { expect, test } from "@playwright/test"
-import snapshotJson from "../../data/snapshot.json"
 import type { TeamSnapshot } from "../../src/data/types"
 
-const snapshot = snapshotJson as TeamSnapshot
+const snapshot = JSON.parse(
+  fs.readFileSync(new URL("../../data/snapshot.json", import.meta.url), "utf8")
+) as TeamSnapshot
 const providerLabel =
   snapshot.identity.provider === "stm" ? "STM Sports" : "TeamLinkt"
 

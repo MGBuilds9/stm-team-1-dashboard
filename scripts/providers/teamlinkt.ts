@@ -94,28 +94,44 @@ function parseCell(value: string): { name: string; score: number | null } {
   }
 }
 
-function torontoDateTime(epochSeconds: number): {
+function publishedDateTime(dateLabel: string, timeLabel: string): {
   date: string
   scheduledAt: string
   displayTime: string
+  epochSeconds: number
 } {
-  const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "America/Toronto",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hourCycle: "h23",
-  }).formatToParts(new Date(epochSeconds * 1000))
-  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]))
-  const date = `${values.year}-${values.month}-${values.day}`
-  const displayTime = `${values.hour}:${values.minute}`
+  const dateMatch = dateLabel.match(
+    /^(?:Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+([A-Z][a-z]{2})\s+(\d{1,2}),\s+(\d{4})$/
+  )
+  const timeMatch = timeLabel.match(/^(\d{1,2}):(\d{2})\s+(AM|PM)\b/)
+  const months: Record<string, string> = {
+    Jan: "01",
+    Feb: "02",
+    Mar: "03",
+    Apr: "04",
+    May: "05",
+    Jun: "06",
+    Jul: "07",
+    Aug: "08",
+    Sep: "09",
+    Oct: "10",
+    Nov: "11",
+    Dec: "12",
+  }
+  if (!dateMatch || !timeMatch || !months[dateMatch[1]]) {
+    throw new Error("TeamLinkt schedule row has an invalid published date/time")
+  }
+  const date = `${dateMatch[3]}-${months[dateMatch[1]]}-${dateMatch[2].padStart(2, "0")}`
+  let hour = Number.parseInt(timeMatch[1], 10) % 12
+  if (timeMatch[3] === "PM") hour += 12
+  const displayTime = `${String(hour).padStart(2, "0")}:${timeMatch[2]}`
+  const scheduledAt = `${date}T${displayTime}:00`
   return {
     date,
     displayTime,
-    scheduledAt: `${date}T${displayTime}:${values.second}`,
+    scheduledAt,
+    epochSeconds:
+      new Date(`${scheduledAt}-04:00`).getTime() / 1000,
   }
 }
 
@@ -130,8 +146,7 @@ function normalizeEvent(
   if (!home.name || !away.name) {
     throw new Error(`TeamLinkt event ${id} is missing a team identity`)
   }
-  const epochSeconds = numberValue(raw["6"])
-  const timing = torontoDateTime(epochSeconds)
+  const timing = publishedDateTime(raw["0"], raw["1"])
   const venueText = load(`<body>${raw["5"]}</body>`)("body")
     .text()
     .replace(/\s+/g, " ")
@@ -147,7 +162,6 @@ function normalizeEvent(
     awayScore: away.score,
     venue: venueText || null,
     officialUrl: `https://leagues.teamlinkt.com/Leagues/event/${associationId}/${id}`,
-    epochSeconds,
   }
 }
 

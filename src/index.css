@@ -217,6 +217,59 @@
   @apply font-sans text-xs text-muted-foreground;
 }
 
+.recent-form-chart {
+  @apply relative grid min-w-0 grid-cols-5 gap-2 overflow-hidden rounded-xl border bg-background/35 px-3 pt-4 pb-3;
+}
+
+.recent-form-zero {
+  @apply pointer-events-none absolute right-3 left-3 border-t border-dashed border-border;
+  top: 50%;
+}
+
+.recent-form-game {
+  @apply relative z-10 min-w-0;
+}
+
+.recent-form-plot {
+  @apply relative mx-auto h-32 w-full;
+}
+
+.recent-form-stem {
+  @apply absolute left-1/2 w-px -translate-x-1/2;
+}
+
+.recent-form-stem.is-win {
+  @apply bg-source;
+}
+
+.recent-form-stem.is-loss {
+  @apply bg-destructive;
+}
+
+.recent-form-dot {
+  @apply absolute left-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-card;
+}
+
+.recent-form-dot.is-win {
+  @apply bg-source;
+}
+
+.recent-form-dot.is-loss {
+  @apply bg-destructive;
+}
+
+.recent-form-value {
+  @apply absolute left-1/2 -translate-x-1/2 text-sm;
+}
+
+.recent-form-value.is-win {
+  @apply text-source;
+}
+
+.recent-form-value.is-loss {
+  @apply text-destructive;
+}
+
 .badge-positive {
   @apply bg-positive/15 text-positive;
 }

@@ -9,6 +9,8 @@ import { extractYouTubeVideoIds } from "../scripts/youtube"
 
 const row = (input: {
   id: number
+  date: string
+  time: string
   epoch: number
   homeId: number
   home: string
@@ -17,8 +19,8 @@ const row = (input: {
   away: string
   awayScore?: number
 }) => ({
-  "0": "Published date",
-  "1": "Published time",
+  "0": input.date,
+  "1": input.time,
   "2": `Game <a href="https://leagues.teamlinkt.com/Leagues/event/9966/${input.id}">[Summary]</a>`,
   "3": `<span>${input.home}</span>${input.homeScore === undefined ? "" : ` (${input.homeScore})`}`,
   "4": `<span>${input.away}</span>${input.awayScore === undefined ? "" : ` (${input.awayScore})`}`,
@@ -33,6 +35,8 @@ describe("TeamLinkt provider normalization", () => {
     data: [
       row({
         id: 1,
+        date: "Sun May 31, 2026",
+        time: "8:35 AM - 9:35 AM",
         epoch: 1_780_238_100,
         homeId: 892656,
         home: "The Tax Collectors",
@@ -43,6 +47,8 @@ describe("TeamLinkt provider normalization", () => {
       }),
       row({
         id: 2,
+        date: "Sun Jun 21, 2026",
+        time: "6:30 PM - 7:30 PM",
         epoch: 1_782_088_200,
         homeId: 892654,
         home: "Bye",
@@ -51,6 +57,8 @@ describe("TeamLinkt provider normalization", () => {
       }),
       row({
         id: 3,
+        date: "Sun Jul 26, 2026",
+        time: "8:50 PM - 9:50 PM",
         epoch: 1_785_120_600,
         homeId: 892656,
         home: "The Tax Collectors",
@@ -74,6 +82,7 @@ describe("TeamLinkt provider normalization", () => {
     ])
     expect(games[0]).toMatchObject({
       opponentName: "Cross Bearers",
+      displayTime: "08:35",
       teamScore: 66,
       opponentScore: 59,
       result: "W",

@@ -466,6 +466,94 @@ function MetricCard({
   )
 }
 
+function RecentFormCard() {
+  const games = snapshot.games
+    .filter(
+      (game) =>
+        game.teamScore !== null &&
+        game.opponentScore !== null &&
+        game.result !== null
+    )
+    .slice(-5)
+  const maxMargin = Math.max(
+    ...games.map((game) =>
+      Math.abs(game.teamScore! - game.opponentScore!)
+    ),
+    10
+  )
+  return (
+    <Card>
+      <CardHeader className="flex-row items-end justify-between">
+        <div>
+          <CardTitle>Recent form</CardTitle>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Margin of victory across the latest scored games
+          </p>
+        </div>
+        <Badge variant="outline">{games.length} games</Badge>
+      </CardHeader>
+      <CardContent>
+        <div
+          className="recent-form-chart"
+          role="img"
+          aria-label={`Recent scoring margins: ${games
+            .map((game) => {
+              const margin = game.teamScore! - game.opponentScore!
+              return `${game.result} ${margin > 0 ? "+" : ""}${margin} against ${game.opponentName}`
+            })
+            .join(", ")}`}
+        >
+          <div className="recent-form-zero" aria-hidden="true" />
+          {games.map((game) => {
+            const margin = game.teamScore! - game.opponentScore!
+            const position = 50 - (margin / maxMargin) * 40
+            const stemTop = Math.min(position, 50)
+            const stemHeight = Math.max(Math.abs(position - 50), 1)
+            return (
+              <div className="recent-form-game" key={game.id}>
+                <div className="recent-form-plot" aria-hidden="true">
+                  <span
+                    className={cn(
+                      "recent-form-stem",
+                      margin >= 0 ? "is-win" : "is-loss"
+                    )}
+                    style={{ top: `${stemTop}%`, height: `${stemHeight}%` }}
+                  />
+                  <span
+                    className={cn(
+                      "recent-form-dot",
+                      margin >= 0 ? "is-win" : "is-loss"
+                    )}
+                    style={{ top: `${position}%` }}
+                  />
+                  <strong
+                    className={cn(
+                      "recent-form-value",
+                      margin >= 0 ? "is-win" : "is-loss"
+                    )}
+                    style={{
+                      top: `${Math.max(3, Math.min(position - 16, 78))}%`,
+                    }}
+                  >
+                    {margin > 0 ? "+" : ""}
+                    {margin}
+                  </strong>
+                </div>
+                <p className="truncate text-center text-xs font-bold">
+                  {game.opponentName}
+                </p>
+                <p className="text-center text-[0.68rem] text-muted-foreground">
+                  {localDate(game.date, { month: "short", day: "numeric" })}
+                </p>
+              </div>
+            )
+          })}
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
 function GameSummary({
   game,
   compact = false,
@@ -536,6 +624,9 @@ function GameSummary({
 
 function OverviewView() {
   const nextGame = snapshot.games.find((game) => game.state === "scheduled")
+  const latestResult = snapshot.games
+    .filter((game) => game.result)
+    .at(-1)
   const recent = snapshot.games
     .filter((game) => game.result)
     .slice(-3)
@@ -590,6 +681,45 @@ function OverviewView() {
           </CardContent>
         </Card>
       )}
+      {!nextGame && latestResult && (
+        <Card className="hero-card overflow-hidden">
+          <CardContent className="grid gap-6 p-6 lg:grid-cols-[1.15fr_0.85fr] lg:p-8">
+            <div>
+              <Badge className="badge-source">
+                <CalendarDays /> Season status
+              </Badge>
+              <p className="mt-5 text-sm font-bold tracking-[0.16em] text-muted-foreground uppercase">
+                Schedule checked {localDate(snapshot.generatedAt.slice(0, 10))}
+              </p>
+              <h2 className="font-display mt-2 text-4xl leading-[0.95] uppercase sm:text-5xl">
+                No upcoming game <span className="text-primary">published</span>
+              </h2>
+              <p className="mt-4 max-w-xl text-sm text-muted-foreground">
+                The dashboard will add the next matchup as soon as{" "}
+                {providerLabel} publishes it.
+              </p>
+            </div>
+            <div className="flex items-end lg:justify-end">
+              <div className="w-full rounded-2xl border bg-background/55 p-5 lg:max-w-sm">
+                <p className="text-xs font-bold tracking-[0.14em] text-muted-foreground uppercase">
+                  Latest result
+                </p>
+                <div className="mt-3 flex items-end justify-between gap-4">
+                  <span className="font-display text-4xl">
+                    {latestResult.teamScore}–{latestResult.opponentScore}
+                  </span>
+                  <span className="pb-1 text-right text-sm text-muted-foreground">
+                    {latestResult.result === "W" ? "Win" : "Loss"}
+                    <br />
+                    {latestResult.isHome ? "vs" : "at"}{" "}
+                    {latestResult.opponentName}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       <section className="metric-grid" aria-label="Season snapshot">
         <MetricCard
@@ -609,6 +739,8 @@ function OverviewView() {
           detail={`${snapshot.team.pointsFor} PF · ${snapshot.team.pointsAgainst} PA`}
         />
       </section>
+
+      <RecentFormCard />
 
       <div className="grid gap-6 xl:grid-cols-[1.25fr_0.75fr]">
         <Card>
