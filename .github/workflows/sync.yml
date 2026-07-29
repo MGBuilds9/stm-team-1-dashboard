@@ -21,18 +21,18 @@ jobs:
       data_revision: ${{ steps.result.outputs.data_revision }}
     steps:
       - name: Check out application code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
 
       - name: Check out last-known-good data
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: data
           path: data-source
 
       - name: Install Node 22
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 22
           cache: npm
@@ -94,7 +94,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Open, update, or close the sanitized sync issue
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           SYNC_RESULT: ${{ needs.sync.result }}
           PUBLISH_RESULT: ${{ needs.publish.result }}
