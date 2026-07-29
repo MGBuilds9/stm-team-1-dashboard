@@ -333,7 +333,7 @@
 
 .boot-sidebar {
   display: none;
-  width: 256px;
+  width: 288px;
   border-right: 1px solid var(--border);
   padding: 24px;
 }
