@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-29T20:32:49.870Z",
-  "contentHash": "136f536c796e5fc46fcf059c421fe4c0204831199cd8e9badb40ceeddc52e438",
+  "generatedAt": "2026-07-30T04:19:28.118Z",
+  "contentHash": "3a434c0dea27f70fb9529dbd88cff7167f9cbc3f1322a7be859279942c412a87",
   "identity": {
     "provider": "stm",
     "leagueId": "mens-basketball",
@@ -25,11 +25,11 @@
     "id": "0dce2102-2b06-4750-b25d-8cbdba23d2c5",
     "name": "Semi-Uncs",
     "season": "Summer 2026",
-    "wins": 2,
+    "wins": 3,
     "losses": 3,
-    "pointsFor": 303,
-    "pointsAgainst": 273,
-    "differential": 30,
+    "pointsFor": 406,
+    "pointsAgainst": 323,
+    "differential": 83,
     "standing": 3
   },
   "roster": [
@@ -37,71 +37,85 @@
       "id": "shady-bishay-5",
       "name": "Shady Bishay",
       "jersey": 5,
-      "gamesPlayed": 3,
-      "ppg": 21.7,
-      "rpg": 9,
+      "gamesPlayed": 4,
+      "ppg": 21.5,
+      "rpg": 8,
       "apg": 4.3,
       "spg": 1,
-      "bpg": 0,
-      "fgPct": 41,
-      "threePct": 33.3,
-      "ftPct": 75
+      "bpg": 0.8,
+      "fgPct": 46.5,
+      "threePct": 38.1,
+      "ftPct": 80
     },
     {
       "id": "alfred-bishay-3",
       "name": "Alfred Bishay",
       "jersey": 3,
-      "gamesPlayed": 4,
-      "ppg": 15.8,
-      "rpg": 6.5,
-      "apg": 3.8,
-      "spg": 1,
-      "bpg": 0.3,
-      "fgPct": 28.6,
-      "threePct": 36.1,
-      "ftPct": 83.3
+      "gamesPlayed": 5,
+      "ppg": 16.8,
+      "rpg": 6.4,
+      "apg": 3.6,
+      "spg": 0.8,
+      "bpg": 0.2,
+      "fgPct": 36.3,
+      "threePct": 39.5,
+      "ftPct": 78.6
     },
     {
       "id": "ramy-bishay-20",
       "name": "Ramy Bishay",
       "jersey": 20,
-      "gamesPlayed": 4,
-      "ppg": 13.5,
-      "rpg": 16.8,
-      "apg": 1.8,
-      "spg": 1.5,
-      "bpg": 2.8,
-      "fgPct": 47.9,
+      "gamesPlayed": 5,
+      "ppg": 13.4,
+      "rpg": 13.6,
+      "apg": 2.2,
+      "spg": 1.4,
+      "bpg": 2.2,
+      "fgPct": 52.7,
       "threePct": 0,
-      "ftPct": 72.7
-    },
-    {
-      "id": "david-elsabawy-8",
-      "name": "David Elsabawy",
-      "jersey": 8,
-      "gamesPlayed": 3,
-      "ppg": 13,
-      "rpg": 3.7,
-      "apg": 3,
-      "spg": 0.7,
-      "bpg": 0.3,
-      "fgPct": 32.4,
-      "threePct": 38.5,
-      "ftPct": 100
+      "ftPct": 69.2
     },
     {
       "id": "michael-guirguis-10",
       "name": "Michael Guirguis",
       "jersey": 10,
-      "gamesPlayed": 3,
-      "ppg": 12.3,
-      "rpg": 10,
-      "apg": 6,
+      "gamesPlayed": 4,
+      "ppg": 12.8,
+      "rpg": 8.5,
+      "apg": 5.5,
       "spg": 0.3,
-      "bpg": 0.7,
-      "fgPct": 44.4,
-      "threePct": 16.7,
-      "ftPct": 60
+      "bpg": 0.5,
+      "fgPct": 52.4,
+      "threePct": 23.1,
+      "ftPct": 57.1
+    },
+    {
+      "id": "david-elsabawy-8",
+      "name": "David Elsabawy",
+      "jersey": 8,
+      "gamesPlayed": 4,
+      "ppg": 12.5,
+      "rpg": 2.8,
+      "apg": 2.8,
+      "spg": 0.5,
+      "bpg": 0.3,
+      "fgPct": 36.4,
+      "threePct": 40.6,
+      "ftPct": 100
+    },
+    {
+      "id": "kiro-bassilious-3",
+      "name": "Kiro Bassilious",
+      "jersey": 3,
+      "gamesPlayed": 3,
+      "ppg": 8.7,
+      "rpg": 2,
+      "apg": 1.3,
+      "spg": 0.7,
+      "bpg": 0,
+      "fgPct": 40,
+      "threePct": 43.8,
+      "ftPct": 75
     },
     {
       "id": "kero-naguib-29",
@@ -118,31 +132,17 @@
       "ftPct": 20
     },
     {
-      "id": "kiro-bassilious-3",
-      "name": "Kiro Bassilious",
-      "jersey": 3,
-      "gamesPlayed": 2,
-      "ppg": 4,
-      "rpg": 2.5,
-      "apg": 1.5,
-      "spg": 0.5,
-      "bpg": 0,
-      "fgPct": 28.6,
-      "threePct": 25,
-      "ftPct": 75
-    },
-    {
       "id": "karim-malek-5",
       "name": "Karim Malek",
       "jersey": 5,
-      "gamesPlayed": 4,
-      "ppg": 3,
-      "rpg": 1.3,
+      "gamesPlayed": 5,
+      "ppg": 3.4,
+      "rpg": 1.2,
       "apg": 1,
-      "spg": 0.5,
+      "spg": 0.4,
       "bpg": 0,
-      "fgPct": 30.8,
-      "threePct": 33.3,
+      "fgPct": 40,
+      "threePct": 38.5,
       "ftPct": 0
     },
     {
@@ -256,16 +256,16 @@
       "date": "2026-07-29",
       "scheduledAt": "2026-07-29T20:00:00",
       "displayTime": "20:00",
-      "state": "scheduled",
+      "state": "final",
       "opponentId": "482864b5-9443-4ad7-a4ff-4cb623d3dba0",
       "opponentName": "Team 2",
       "venue": null,
       "isHome": false,
-      "teamScore": null,
-      "opponentScore": null,
-      "result": null,
+      "teamScore": 103,
+      "opponentScore": 50,
+      "result": "W",
       "officialUrl": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
-      "hasBoxScore": false,
+      "hasBoxScore": true,
       "videoUrl": null,
       "videoTitle": null
     },
@@ -294,13 +294,13 @@
       "teamId": "stm-team-2",
       "teamName": "Team 2",
       "wins": 5,
-      "losses": 0,
-      "gamesPlayed": 5,
-      "winPct": 1,
-      "pointsFor": 323,
-      "pointsAgainst": 272,
-      "differential": 51,
-      "streak": "W5"
+      "losses": 1,
+      "gamesPlayed": 6,
+      "winPct": 0.833,
+      "pointsFor": 373,
+      "pointsAgainst": 375,
+      "differential": -2,
+      "streak": "L1"
     },
     {
       "rank": 2,
@@ -319,14 +319,14 @@
       "rank": 3,
       "teamId": "0dce2102-2b06-4750-b25d-8cbdba23d2c5",
       "teamName": "Semi-Uncs",
-      "wins": 2,
+      "wins": 3,
       "losses": 3,
-      "gamesPlayed": 5,
-      "winPct": 0.4,
-      "pointsFor": 303,
-      "pointsAgainst": 273,
-      "differential": 30,
-      "streak": "L1"
+      "gamesPlayed": 6,
+      "winPct": 0.5,
+      "pointsFor": 406,
+      "pointsAgainst": 323,
+      "differential": 83,
+      "streak": "W1"
     },
     {
       "rank": 4,
@@ -374,7 +374,7 @@
       "label": "Points",
       "playerName": "Shady Bishay",
       "teamName": "Semi-Uncs",
-      "value": 21.7,
+      "value": 21.5,
       "unit": "PPG",
       "tied": false
     },
@@ -383,7 +383,7 @@
       "label": "Rebounds",
       "playerName": "Ramy Bishay",
       "teamName": "Semi-Uncs",
-      "value": 16.8,
+      "value": 13.6,
       "unit": "RPG",
       "tied": false
     },
@@ -392,7 +392,7 @@
       "label": "Assists",
       "playerName": "Michael Guirguis",
       "teamName": "Semi-Uncs",
-      "value": 6,
+      "value": 5.5,
       "unit": "APG",
       "tied": false
     },
@@ -410,7 +410,7 @@
       "label": "Blocks",
       "playerName": "Ramy Bishay",
       "teamName": "Semi-Uncs",
-      "value": 2.8,
+      "value": 2.2,
       "unit": "BPG",
       "tied": false
     }
@@ -430,7 +430,7 @@
       "label": "Rebounds",
       "playerName": "Peter Gouda",
       "teamName": "Team 2",
-      "value": 24.3,
+      "value": 22,
       "unit": "RPG",
       "tied": false
     },
@@ -457,21 +457,21 @@
       "label": "Blocks",
       "playerName": "Ramy Bishay",
       "teamName": "Team 1",
-      "value": 2.8,
+      "value": 2.2,
       "unit": "BPG",
       "tied": false
     }
   ],
   "teamStats": {
-    "gamesWithBoxScores": 4,
-    "pointsPerGame": 75.8,
-    "reboundsPerGame": 50,
-    "assistsPerGame": 19.3,
-    "stealsPerGame": 7.3,
-    "blocksPerGame": 3.8,
-    "fieldGoalPct": 36.6,
-    "threePointPct": 32.2,
-    "freeThrowPct": 71.7
+    "gamesWithBoxScores": 5,
+    "pointsPerGame": 81.2,
+    "reboundsPerGame": 43.6,
+    "assistsPerGame": 19.2,
+    "stealsPerGame": 6.4,
+    "blocksPerGame": 3.6,
+    "fieldGoalPct": 42.5,
+    "threePointPct": 36.7,
+    "freeThrowPct": 69.8
   },
   "boxScores": [
     {
@@ -2334,62 +2334,513 @@
           }
         }
       }
+    },
+    {
+      "gameId": "318877d4-c504-450b-af66-e66c3f811a82",
+      "date": "2026-07-29",
+      "officialUrl": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
+      "home": {
+        "teamId": "482864b5-9443-4ad7-a4ff-4cb623d3dba0",
+        "teamName": "Team 2",
+        "score": 50,
+        "players": [
+          {
+            "points": 23,
+            "rebounds": 13,
+            "assists": 3,
+            "steals": 4,
+            "blocks": 1,
+            "turnovers": 2,
+            "fouls": 0,
+            "fieldGoals": {
+              "made": 10,
+              "attempted": 32,
+              "percentage": 31.3
+            },
+            "threePointers": {
+              "made": 2,
+              "attempted": 11,
+              "percentage": 18.2
+            },
+            "freeThrows": {
+              "made": 1,
+              "attempted": 4,
+              "percentage": 25
+            },
+            "playerId": "peter-gouda-0",
+            "playerName": "Peter Gouda",
+            "jersey": 0
+          },
+          {
+            "points": 13,
+            "rebounds": 4,
+            "assists": 0,
+            "steals": 1,
+            "blocks": 0,
+            "turnovers": 3,
+            "fouls": 1,
+            "fieldGoals": {
+              "made": 6,
+              "attempted": 16,
+              "percentage": 37.5
+            },
+            "threePointers": {
+              "made": 1,
+              "attempted": 7,
+              "percentage": 14.3
+            },
+            "freeThrows": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "playerId": "andrew-guindy-15",
+            "playerName": "Andrew Guindy",
+            "jersey": 15
+          },
+          {
+            "points": 9,
+            "rebounds": 6,
+            "assists": 2,
+            "steals": 0,
+            "blocks": 0,
+            "turnovers": 3,
+            "fouls": 1,
+            "fieldGoals": {
+              "made": 3,
+              "attempted": 12,
+              "percentage": 25
+            },
+            "threePointers": {
+              "made": 2,
+              "attempted": 7,
+              "percentage": 28.6
+            },
+            "freeThrows": {
+              "made": 1,
+              "attempted": 2,
+              "percentage": 50
+            },
+            "playerId": "morcos-fahmy-23",
+            "playerName": "Morcos Fahmy",
+            "jersey": 23
+          },
+          {
+            "points": 5,
+            "rebounds": 2,
+            "assists": 0,
+            "steals": 0,
+            "blocks": 0,
+            "turnovers": 3,
+            "fouls": 0,
+            "fieldGoals": {
+              "made": 2,
+              "attempted": 6,
+              "percentage": 33.3
+            },
+            "threePointers": {
+              "made": 1,
+              "attempted": 3,
+              "percentage": 33.3
+            },
+            "freeThrows": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "playerId": "kiro-mikhail-17",
+            "playerName": "Kiro Mikhail",
+            "jersey": 17
+          },
+          {
+            "points": 0,
+            "rebounds": 3,
+            "assists": 0,
+            "steals": 0,
+            "blocks": 0,
+            "turnovers": 1,
+            "fouls": 1,
+            "fieldGoals": {
+              "made": 0,
+              "attempted": 1,
+              "percentage": 0
+            },
+            "threePointers": {
+              "made": 0,
+              "attempted": 1,
+              "percentage": 0
+            },
+            "freeThrows": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "playerId": "rcr-c-0",
+            "playerName": "RCr c",
+            "jersey": 0
+          },
+          {
+            "points": 0,
+            "rebounds": 2,
+            "assists": 1,
+            "steals": 0,
+            "blocks": 0,
+            "turnovers": 0,
+            "fouls": 1,
+            "fieldGoals": {
+              "made": 0,
+              "attempted": 2,
+              "percentage": 0
+            },
+            "threePointers": {
+              "made": 0,
+              "attempted": 1,
+              "percentage": 0
+            },
+            "freeThrows": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "playerId": "aya-y-0",
+            "playerName": "AYa y",
+            "jersey": 0
+          },
+          {
+            "points": 0,
+            "rebounds": 0,
+            "assists": 0,
+            "steals": 0,
+            "blocks": 0,
+            "turnovers": 1,
+            "fouls": 0,
+            "fieldGoals": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "threePointers": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "freeThrows": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "playerId": "fady-nakhla-22",
+            "playerName": "Fady Nakhla",
+            "jersey": 22
+          }
+        ],
+        "totals": {
+          "points": 50,
+          "rebounds": 30,
+          "assists": 6,
+          "steals": 5,
+          "blocks": 1,
+          "turnovers": 13,
+          "fouls": 4,
+          "fieldGoals": {
+            "made": 21,
+            "attempted": 69,
+            "percentage": 30.4
+          },
+          "threePointers": {
+            "made": 6,
+            "attempted": 30,
+            "percentage": 20
+          },
+          "freeThrows": {
+            "made": 2,
+            "attempted": 6,
+            "percentage": 33.3
+          }
+        }
+      },
+      "away": {
+        "teamId": "0dce2102-2b06-4750-b25d-8cbdba23d2c5",
+        "teamName": "Semi-Uncs",
+        "score": 103,
+        "players": [
+          {
+            "points": 21,
+            "rebounds": 6,
+            "assists": 3,
+            "steals": 0,
+            "blocks": 0,
+            "turnovers": 0,
+            "fouls": 1,
+            "fieldGoals": {
+              "made": 9,
+              "attempted": 10,
+              "percentage": 90
+            },
+            "threePointers": {
+              "made": 2,
+              "attempted": 2,
+              "percentage": 100
+            },
+            "freeThrows": {
+              "made": 1,
+              "attempted": 2,
+              "percentage": 50
+            },
+            "playerId": "alfred-bishay-3",
+            "playerName": "Alfred Bishay",
+            "jersey": 3
+          },
+          {
+            "points": 21,
+            "rebounds": 5,
+            "assists": 4,
+            "steals": 1,
+            "blocks": 3,
+            "turnovers": 0,
+            "fouls": 3,
+            "fieldGoals": {
+              "made": 8,
+              "attempted": 10,
+              "percentage": 80
+            },
+            "threePointers": {
+              "made": 4,
+              "attempted": 6,
+              "percentage": 66.7
+            },
+            "freeThrows": {
+              "made": 1,
+              "attempted": 1,
+              "percentage": 100
+            },
+            "playerId": "shady-bishay-5",
+            "playerName": "Shady Bishay",
+            "jersey": 5
+          },
+          {
+            "points": 18,
+            "rebounds": 1,
+            "assists": 1,
+            "steals": 1,
+            "blocks": 0,
+            "turnovers": 0,
+            "fouls": 0,
+            "fieldGoals": {
+              "made": 6,
+              "attempted": 13,
+              "percentage": 46.2
+            },
+            "threePointers": {
+              "made": 6,
+              "attempted": 12,
+              "percentage": 50
+            },
+            "freeThrows": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "playerId": "kiro-bassilious-3",
+            "playerName": "Kiro Bassilious",
+            "jersey": 3
+          },
+          {
+            "points": 14,
+            "rebounds": 4,
+            "assists": 4,
+            "steals": 0,
+            "blocks": 0,
+            "turnovers": 1,
+            "fouls": 3,
+            "fieldGoals": {
+              "made": 6,
+              "attempted": 6,
+              "percentage": 100
+            },
+            "threePointers": {
+              "made": 1,
+              "attempted": 1,
+              "percentage": 100
+            },
+            "freeThrows": {
+              "made": 1,
+              "attempted": 2,
+              "percentage": 50
+            },
+            "playerId": "michael-guirguis-10",
+            "playerName": "Michael Guirguis",
+            "jersey": 10
+          },
+          {
+            "points": 13,
+            "rebounds": 1,
+            "assists": 4,
+            "steals": 1,
+            "blocks": 0,
+            "turnovers": 0,
+            "fouls": 0,
+            "fieldGoals": {
+              "made": 6,
+              "attempted": 7,
+              "percentage": 85.7
+            },
+            "threePointers": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "freeThrows": {
+              "made": 1,
+              "attempted": 2,
+              "percentage": 50
+            },
+            "playerId": "ramy-bishay-20",
+            "playerName": "Ramy Bishay",
+            "jersey": 20
+          },
+          {
+            "points": 11,
+            "rebounds": 0,
+            "assists": 2,
+            "steals": 0,
+            "blocks": 0,
+            "turnovers": 0,
+            "fouls": 0,
+            "fieldGoals": {
+              "made": 4,
+              "attempted": 7,
+              "percentage": 57.1
+            },
+            "threePointers": {
+              "made": 3,
+              "attempted": 6,
+              "percentage": 50
+            },
+            "freeThrows": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "playerId": "david-elsabawy-8",
+            "playerName": "David Elsabawy",
+            "jersey": 8
+          },
+          {
+            "points": 5,
+            "rebounds": 1,
+            "assists": 1,
+            "steals": 0,
+            "blocks": 0,
+            "turnovers": 0,
+            "fouls": 0,
+            "fieldGoals": {
+              "made": 2,
+              "attempted": 2,
+              "percentage": 100
+            },
+            "threePointers": {
+              "made": 1,
+              "attempted": 1,
+              "percentage": 100
+            },
+            "freeThrows": {
+              "made": 0,
+              "attempted": 0,
+              "percentage": null
+            },
+            "playerId": "karim-malek-5",
+            "playerName": "Karim Malek",
+            "jersey": 5
+          }
+        ],
+        "totals": {
+          "points": 103,
+          "rebounds": 18,
+          "assists": 19,
+          "steals": 3,
+          "blocks": 3,
+          "turnovers": 1,
+          "fouls": 7,
+          "fieldGoals": {
+            "made": 41,
+            "attempted": 55,
+            "percentage": 74.5
+          },
+          "threePointers": {
+            "made": 17,
+            "attempted": 28,
+            "percentage": 60.7
+          },
+          "freeThrows": {
+            "made": 4,
+            "attempted": 7,
+            "percentage": 57.1
+          }
+        }
+      }
     }
   ],
   "sources": [
     {
       "label": "schedule",
       "url": "https://stmsports.ca/mens-basketball/schedule?view=all",
-      "checkedAt": "2026-07-29T20:32:49.870Z",
-      "hash": "ff52c5aa76c1ac3e7f16ffe9ddaab42f0366a90f7d774d2aac70215f15a91939"
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "8f403a4c126b0c9f1b47d36e8b95ddcccaaad5b809aec8e0271112ed9c2ce3bd"
     },
     {
       "label": "standings",
       "url": "https://stmsports.ca/mens-basketball/standings",
-      "checkedAt": "2026-07-29T20:32:49.870Z",
-      "hash": "e069e4f9924e425a22bfa15517fca655dffbe4a023e5ef73ce5bef565a160074"
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "b567970dfb5b7f9311c4dbfa0564f409f781e0160da0d80ca881a698fc24d793"
     },
     {
       "label": "team",
       "url": "https://stmsports.ca/mens-basketball/teams/0dce2102-2b06-4750-b25d-8cbdba23d2c5",
-      "checkedAt": "2026-07-29T20:32:49.870Z",
-      "hash": "348cffb4401868c246b2f9e150c35967d64f36288dbb8a92a478287e2ad3d951"
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "38db9dc35ff6b975c9a980ed5032202dcbbae1b26b713d6e31c00e7bc81ba0f3"
     },
     {
       "label": "stats",
       "url": "https://stmsports.ca/mens-basketball/stats",
-      "checkedAt": "2026-07-29T20:32:49.870Z",
-      "hash": "2116527930eb710aefc3eefe57fb0910f6225e3d18c8220b35b3141e43c0c981"
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "57ceb90a259e1ac37728beb1a24cf8a98ebe8575d13efcafb30849af9174b9e3"
     },
     {
       "label": "youtube-channel",
       "url": "https://www.youtube.com/@STMSports-t3z",
-      "checkedAt": "2026-07-29T20:32:49.870Z",
-      "hash": "5e41c1ec97a495391d4a784b7f39e56f1902cfc7e3df8fd905e5568e9b632f86"
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "feb1cac25cb2f839d0bb5fc08239286a41b72439dc16596a247d35f688982206"
     },
     {
       "label": "box-score-ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
       "url": "https://stmsports.ca/mens-basketball/game/ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
-      "checkedAt": "2026-07-29T20:32:49.870Z",
-      "hash": "6039ed752e72a2aa2d34fe4350833ef4ced7d14f3fa4ebc8f0e9943b40ab77aa"
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "642b6c488cd981020a4c97fb8e8f5203577baa3f77dc555cb7c87d7448c51761"
     },
     {
       "label": "box-score-7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
       "url": "https://stmsports.ca/mens-basketball/game/7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
-      "checkedAt": "2026-07-29T20:32:49.870Z",
-      "hash": "4d8d8087f1af64588df16bd5b3e2099a19149a2c1cd92f165c4e95daf1493bd5"
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "e396e993242c68bd31693e6540fa76c121b157ec86a0fa77a150cd03970ffa8e"
     },
     {
       "label": "box-score-90ab0f6d-44c3-4436-b974-1b31619809a6",
       "url": "https://stmsports.ca/mens-basketball/game/90ab0f6d-44c3-4436-b974-1b31619809a6",
-      "checkedAt": "2026-07-29T20:32:49.870Z",
-      "hash": "9d88a0759fa3954d47c183c4e0721e6adac5f96be12480589ca3387e809321ce"
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "c625fb02f203ab4d890f92c2041e93d10e2d305bc299cf256e6c979183b28faa"
     },
     {
       "label": "box-score-745149a8-f5af-4f58-95e2-bf627da96d07",
       "url": "https://stmsports.ca/mens-basketball/game/745149a8-f5af-4f58-95e2-bf627da96d07",
-      "checkedAt": "2026-07-29T20:32:49.870Z",
-      "hash": "cac8da2ba24320a3484d7f9db0a845c5fe8f9d892e9fafab58b0bbb24468e1c9"
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "09e890fefee8d59d0b87736d5dbc1951539f77e709b2f57852d9bef8e3ac9f1e"
+    },
+    {
+      "label": "box-score-318877d4-c504-450b-af66-e66c3f811a82",
+      "url": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
+      "checkedAt": "2026-07-30T04:19:28.118Z",
+      "hash": "d5981ccafd9e0c4062ee83f71e3e7dda8b713b751da71f94e33598042d1a689d"
     }
   ]
 }
