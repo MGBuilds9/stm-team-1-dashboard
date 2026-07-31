@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-30T04:19:28.118Z",
-  "contentHash": "3a434c0dea27f70fb9529dbd88cff7167f9cbc3f1322a7be859279942c412a87",
+  "generatedAt": "2026-07-31T04:25:36.095Z",
+  "contentHash": "93fc06659e729a8ca7669c89dbd5ce1ef31cc6578c78016999fec63100c07f80",
   "identity": {
     "provider": "stm",
     "leagueId": "mens-basketball",
@@ -333,16 +333,29 @@
       "teamId": "stm-team-4",
       "teamName": "Team 4",
       "wins": 2,
-      "losses": 3,
-      "gamesPlayed": 5,
-      "winPct": 0.4,
-      "pointsFor": 347,
-      "pointsAgainst": 376,
-      "differential": -29,
-      "streak": "L2"
+      "losses": 4,
+      "gamesPlayed": 6,
+      "winPct": 0.33299999999999996,
+      "pointsFor": 409,
+      "pointsAgainst": 442,
+      "differential": -33,
+      "streak": "L3"
     },
     {
       "rank": 5,
+      "teamId": "stm-team-5",
+      "teamName": "Team 5",
+      "wins": 2,
+      "losses": 4,
+      "gamesPlayed": 6,
+      "winPct": 0.33299999999999996,
+      "pointsFor": 332,
+      "pointsAgainst": 396,
+      "differential": -64,
+      "streak": "W2"
+    },
+    {
+      "rank": 6,
       "teamId": "stm-team-6",
       "teamName": "Team 6",
       "wins": 1,
@@ -353,19 +366,6 @@
       "pointsAgainst": 335,
       "differential": -22,
       "streak": "L3"
-    },
-    {
-      "rank": 6,
-      "teamId": "stm-team-5",
-      "teamName": "Team 5",
-      "wins": 1,
-      "losses": 4,
-      "gamesPlayed": 5,
-      "winPct": 0.2,
-      "pointsFor": 266,
-      "pointsAgainst": 334,
-      "differential": -68,
-      "streak": "W1"
     }
   ],
   "teamLeaders": [
@@ -455,9 +455,9 @@
     {
       "category": "bpg",
       "label": "Blocks",
-      "playerName": "Ramy Bishay",
-      "teamName": "Team 1",
-      "value": 2.2,
+      "playerName": "Fady K",
+      "teamName": "Team 5",
+      "value": 2.7,
       "unit": "BPG",
       "tied": false
     }
@@ -2785,62 +2785,62 @@
     {
       "label": "schedule",
       "url": "https://stmsports.ca/mens-basketball/schedule?view=all",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "8f403a4c126b0c9f1b47d36e8b95ddcccaaad5b809aec8e0271112ed9c2ce3bd"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "40881ccb521a9aa7340160e101ca2ddd2b64d2943035b90d18690e70dc630390"
     },
     {
       "label": "standings",
       "url": "https://stmsports.ca/mens-basketball/standings",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "b567970dfb5b7f9311c4dbfa0564f409f781e0160da0d80ca881a698fc24d793"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "cc539a318f7e85d0957cbe37f07c2d69ca65934ea7eb7721e3d083fb81f61008"
     },
     {
       "label": "team",
       "url": "https://stmsports.ca/mens-basketball/teams/0dce2102-2b06-4750-b25d-8cbdba23d2c5",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "38db9dc35ff6b975c9a980ed5032202dcbbae1b26b713d6e31c00e7bc81ba0f3"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "52550cdc085288b58fb786e8dbd439d0c35bcafc6c27dc1bcfc93acee6e73b72"
     },
     {
       "label": "stats",
       "url": "https://stmsports.ca/mens-basketball/stats",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "57ceb90a259e1ac37728beb1a24cf8a98ebe8575d13efcafb30849af9174b9e3"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "f2ba7a5fb6dc6599759ebf0d26c695cb3faadd3e178b9ecc5cdd34a5a71d7a77"
     },
     {
       "label": "youtube-channel",
       "url": "https://www.youtube.com/@STMSports-t3z",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "feb1cac25cb2f839d0bb5fc08239286a41b72439dc16596a247d35f688982206"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "c0e1a2550e96bf2dee1f478097707caa07e43694ff1322f23d3abd71136fdba7"
     },
     {
       "label": "box-score-ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
       "url": "https://stmsports.ca/mens-basketball/game/ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "642b6c488cd981020a4c97fb8e8f5203577baa3f77dc555cb7c87d7448c51761"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "5ef572270d66a588d8aab701aa1bb62923dd8292775f449dfbd165217b23349d"
     },
     {
       "label": "box-score-7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
       "url": "https://stmsports.ca/mens-basketball/game/7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "e396e993242c68bd31693e6540fa76c121b157ec86a0fa77a150cd03970ffa8e"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "8e70dc14c7daf02bc663fbb41ab0f2da93f183420f4fc57524645af3fa1c5279"
     },
     {
       "label": "box-score-90ab0f6d-44c3-4436-b974-1b31619809a6",
       "url": "https://stmsports.ca/mens-basketball/game/90ab0f6d-44c3-4436-b974-1b31619809a6",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "c625fb02f203ab4d890f92c2041e93d10e2d305bc299cf256e6c979183b28faa"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "4254d0d921e94c066f5bc9e8919333125af46f96ad8a9aea5187e0cb891b1b8b"
     },
     {
       "label": "box-score-745149a8-f5af-4f58-95e2-bf627da96d07",
       "url": "https://stmsports.ca/mens-basketball/game/745149a8-f5af-4f58-95e2-bf627da96d07",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "09e890fefee8d59d0b87736d5dbc1951539f77e709b2f57852d9bef8e3ac9f1e"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "5f6352b81da5c0bdbe85d613c2ef9554d89c2af28a3bde22b0dec071f3473586"
     },
     {
       "label": "box-score-318877d4-c504-450b-af66-e66c3f811a82",
       "url": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
-      "checkedAt": "2026-07-30T04:19:28.118Z",
-      "hash": "d5981ccafd9e0c4062ee83f71e3e7dda8b713b751da71f94e33598042d1a689d"
+      "checkedAt": "2026-07-31T04:25:36.095Z",
+      "hash": "d04f6ec916225c6c89abb542e479fd9bd44bb48a1a90faf110b1b82fe4fb02f6"
     }
   ]
 }
