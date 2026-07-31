@@ -53,7 +53,7 @@ jobs:
         with:
           ref: data
           path: data-source
-          fetch-depth: 1
+          fetch-depth: 2
 
       - name: Resolve tested revisions
         id: revisions
@@ -79,9 +79,6 @@ jobs:
           fi
           echo "code_revision=$code_revision" >> "$GITHUB_OUTPUT"
           echo "data_revision=$data_revision" >> "$GITHUB_OUTPUT"
-          mkdir -p data
-          cp data-source/snapshot.json data/snapshot.json
-          cp data-source/receipt.json data/receipt.json
 
       - name: Install Node 22
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -91,6 +88,15 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --ignore-scripts
+
+      - name: Verify exact data lineage
+        run: npm run verify:data-lineage -- data-source
+
+      - name: Prepare verified snapshot
+        run: |
+          mkdir -p data
+          cp data-source/snapshot.json data/snapshot.json
+          cp data-source/receipt.json data/receipt.json
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

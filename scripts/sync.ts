@@ -2,8 +2,6 @@ import fs from "node:fs/promises"
 import path from "node:path"
 import { pathToFileURL } from "node:url"
 
-import { canonicalSnapshotContentV1 } from "@basketball-os/public-contracts"
-
 import {
   assembleSnapshot,
   parseBoxScore,
@@ -14,7 +12,7 @@ import {
   SOURCE_URLS,
 } from "../src/data/parser"
 import {
-  teamConfigSchema,
+  assertSnapshotIdentityMatchesConfig,
   type StmTeamConfig,
   type TeamConfig,
 } from "../src/data/config"
@@ -27,6 +25,12 @@ import type {
 import { fetchText, sha256 } from "./source"
 import { resolveGameVideos } from "./youtube"
 import { buildTeamLinktSnapshot } from "./providers/teamlinkt"
+import {
+  buildDataReceiptV3,
+  dataSnapshotSemanticHash,
+  readValidatedDataPair,
+} from "./data-receipt"
+import { readTeamConfig } from "./team-config"
 
 const ROOT = process.cwd()
 const DATA_DIRECTORY = process.env.DASHBOARD_DATA_DIR ?? path.join(ROOT, "data")
@@ -35,56 +39,20 @@ const RECEIPT_PATH = path.join(DATA_DIRECTORY, "receipt.json")
 
 interface SyncBuild {
   snapshot: TeamSnapshot
-  sourceCount: number
-  gameCount: number
-  boxScoreCount: number
-  matchedVideoCount: number
 }
 
 export async function readPreviousSnapshot(
   file: string,
   config: TeamConfig
 ): Promise<TeamSnapshot | null> {
-  let raw: unknown
-  try {
-    raw = JSON.parse(await fs.readFile(file, "utf8"))
-  } catch (error) {
-    if (
-      error !== null &&
-      typeof error === "object" &&
-      "code" in error &&
-      error.code === "ENOENT"
-    ) {
-      return null
-    }
-    throw error
-  }
-  if (
-    raw !== null &&
-    typeof raw === "object" &&
-    "schemaVersion" in raw &&
-    raw.schemaVersion === 2
-  ) {
-    throw new Error(
-      "Existing TeamSnapshotV2 must be upgraded with npm run migrate:snapshot before synchronization"
-    )
-  }
-  const snapshot = teamSnapshotSchema.parse(raw)
-  if (
-    snapshot.identity.provider !== config.provider ||
-    snapshot.identity.leagueId !== config.leagueId ||
-    snapshot.identity.seasonId !== config.seasonId ||
-    snapshot.identity.teamId !== config.teamId ||
-    snapshot.identity.name !== config.teamName ||
-    snapshot.identity.seasonName !== config.seasonName ||
-    snapshot.identity.leagueName !== config.leagueName ||
-    snapshot.identity.timezone !== config.timezone ||
-    snapshot.identity.youtubeChannelUrl !== config.youtube.channelUrl
-  ) {
-    throw new Error(
-      "Existing snapshot identity does not match the configured team"
-    )
-  }
+  const pair = await readValidatedDataPair({
+    snapshotFile: file,
+    receiptFile: path.join(path.dirname(file), "receipt.json"),
+    allowBothMissing: true,
+  })
+  if (!pair) return null
+  const { snapshot } = pair
+  assertSnapshotIdentityMatchesConfig(snapshot, config)
   return snapshot
 }
 
@@ -110,7 +78,6 @@ async function buildStmSnapshot(
     teamAliases: config.youtube.teamAliases,
   })
   const games = videoResolution.games
-  const matchedVideoCount = videoResolution.matchedCount
   const videoSource: SourceReference | null =
     videoResolution.channelHtml === null
       ? (previousSnapshot?.sources.find(
@@ -187,24 +154,16 @@ async function buildStmSnapshot(
   })
   const snapshot: TeamSnapshot = {
     ...candidate,
-    contentHash: sha256(canonicalSnapshotContentV1(candidate)),
+    contentHash: dataSnapshotSemanticHash(candidate),
   }
-  return {
-    snapshot,
-    sourceCount: sources.length,
-    gameCount: games.length,
-    boxScoreCount: boxScores.length,
-    matchedVideoCount,
-  }
+  return { snapshot }
 }
 
 async function main() {
   const checkedAt = new Date().toISOString()
   const configPath =
     process.env.TEAM_CONFIG_PATH ?? path.join(ROOT, "config", "team.json")
-  const config = teamConfigSchema.parse(
-    JSON.parse(await fs.readFile(configPath, "utf8"))
-  )
+  const config = await readTeamConfig(configPath)
   const previousSnapshot = await readPreviousSnapshot(SNAPSHOT_PATH, config)
   const build =
     config.provider === "stm"
@@ -212,6 +171,7 @@ async function main() {
       : await buildTeamLinktSnapshot(config, checkedAt, previousSnapshot)
   const { snapshot } = build
   const validated = teamSnapshotSchema.parse(snapshot)
+  assertSnapshotIdentityMatchesConfig(validated, config)
   const previousHash = previousSnapshot?.contentHash ?? null
   const contentHash = validated.contentHash
 
@@ -222,25 +182,8 @@ async function main() {
 
   await fs.mkdir(path.dirname(SNAPSHOT_PATH), { recursive: true })
   await fs.writeFile(SNAPSHOT_PATH, `${JSON.stringify(validated, null, 2)}\n`)
-  await fs.writeFile(
-    RECEIPT_PATH,
-    `${JSON.stringify(
-      {
-        schemaVersion: 3,
-        generatedAt: checkedAt,
-        contentHash,
-        previousHash,
-        provider: config.provider,
-        teamId: config.teamId,
-        sourceCount: build.sourceCount,
-        gameCount: build.gameCount,
-        boxScoreCount: build.boxScoreCount,
-        matchedVideoCount: build.matchedVideoCount,
-      },
-      null,
-      2
-    )}\n`
-  )
+  const receipt = buildDataReceiptV3(validated, previousHash)
+  await fs.writeFile(RECEIPT_PATH, `${JSON.stringify(receipt, null, 2)}\n`)
   process.stdout.write(`CHANGED ${contentHash}\n`)
 }
 

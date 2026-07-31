@@ -21,6 +21,7 @@ jobs:
         with:
           ref: data
           path: data-source
+          fetch-depth: 2
 
       - name: Install Node 22
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -28,14 +29,17 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify checked-out data lineage
+        run: npm run verify:data-lineage -- data-source
+
       - name: Prepare validated snapshot
         run: |
           mkdir -p data
           cp data-source/snapshot.json data/snapshot.json
           cp data-source/receipt.json data/receipt.json
-
-      - name: Install dependencies
-        run: npm ci --ignore-scripts
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

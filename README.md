@@ -21,6 +21,9 @@ declared in `config/team.json`, whitelists a provider response into `TeamSnapsho
 V3 from Basketball OS, computes its canonical semantic hash, validates it with the
 shared public contract, and writes only normalized data. A malformed or
 inconsistent update fails before it can replace the last-known-good snapshot.
+The V3 snapshot and strict receipt are one data pair: sync accepts an empty first
+run only when both are absent, while sync and release fail closed if either file
+is missing, malformed, or no longer describes the other.
 
 Game-video availability is explicit: `verified_exact` opens the reviewed game
 upload, `channel_only` links to the configured league channel with a reason, and
@@ -61,8 +64,12 @@ npm run test:e2e
 `npm run fixtures:capture` refreshes sanitized STM parser fixtures. Provider-neutral
 and TeamLinkt normalization tests run with `npm test`.
 
-`npm run migrate:snapshot` upgrades an existing V2 snapshot in place, maps its
-legacy video fields into the V3 union, and recomputes the semantic content hash.
+`npm run migrate:snapshot` upgrades an existing V2 snapshot and its sibling
+receipt together, maps legacy video fields into the V3 union, recomputes the
+semantic content hash, and writes the deterministic V3 receipt first and snapshot
+last. An interrupted migration can resume only from the exact recomputable
+V2-snapshot/V3-receipt state; a V3 snapshot without its exact V3 receipt fails
+closed.
 
 ## Create a team project
 
@@ -92,6 +99,18 @@ manual dispatch. An unchanged source check stops before a data commit, browser t
 build, or deployment. A changed source produces one data commit and calls the shared
 publish workflow. The publish workflow tests a resolved `main`/`data` pair, rejects
 stale queued work, and deploys the exact uploaded artifact.
+
+CI, sync, and publish verify the current data commit and its exact parent before
+copying or building. The bounded depth-two check proves that the release edge has
+zero or one parent and that `receipt.previousHash` names that parent snapshot; it
+does not claim to audit every older commit in the branch. Sync re-verifies a newly
+created data commit before push, so an interrupted or rejected run leaves the
+remote last-known-good pair unchanged.
+
+The transaction boundary is the two-file Git commit, not an atomic local
+filesystem swap. If a direct local `npm run sync` process is interrupted while
+replacing the pair, restore both files from the last committed `data` revision
+before retrying.
 
 Scheduled GitHub Actions can still be delayed by GitHub’s scheduler.
 

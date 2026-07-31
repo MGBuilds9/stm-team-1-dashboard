@@ -12,6 +12,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: basketball-data-sync-${{ github.repository }}
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -33,6 +37,7 @@ jobs:
         with:
           ref: data
           path: data-source
+          fetch-depth: 2
 
       - name: Install Node 22
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -42,6 +47,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --ignore-scripts
+
+      - name: Verify last-known-good data lineage
+        run: npm run verify:data-lineage -- data-source
 
       - name: Restore last-known-good snapshot
         run: |
@@ -65,14 +73,20 @@ jobs:
         run: |
           cp data/snapshot.json data-source/snapshot.json
           cp data/receipt.json data-source/receipt.json
-          cd data-source
-          git config user.name "basketball-dashboard-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add snapshot.json receipt.json
-          generated_at="$(node -p "require('./receipt.json').generatedAt")"
-          team_name="$(node -p "require('./receipt.json').teamId")"
-          git commit -m "data: refresh team $team_name snapshot $generated_at"
-          git push origin HEAD:data
+          git -C data-source config user.name "basketball-dashboard-bot"
+          git -C data-source config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C data-source add snapshot.json receipt.json
+          generated_at="$(node -p "require('./data-source/receipt.json').generatedAt")"
+          team_id="$(node -p "require('./data-source/receipt.json').teamId")"
+          git -C data-source commit -m "data: refresh team $team_id snapshot $generated_at"
+
+      - name: Verify new data lineage before push
+        if: steps.probe.outputs.changed == 'true'
+        run: npm run verify:data-lineage -- data-source
+
+      - name: Push verified data revision
+        if: steps.probe.outputs.changed == 'true'
+        run: git -C data-source push origin HEAD:data
 
       - name: Reconcile the expected release with live Pages
         id: result

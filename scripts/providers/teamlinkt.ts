@@ -1,5 +1,4 @@
 import { load } from "cheerio"
-import { canonicalSnapshotContentV1 } from "@basketball-os/public-contracts"
 
 import type { TeamLinktTeamConfig } from "../../src/data/config"
 import {
@@ -23,6 +22,7 @@ import type {
 } from "../../src/data/types"
 import { fetchJson, fetchText, postFormJson, sha256 } from "../source"
 import { resolveGameVideos } from "../youtube"
+import { dataSnapshotSemanticHash } from "../data-receipt"
 
 interface TeamLinktEventRow {
   "0": string
@@ -921,7 +921,7 @@ export async function buildTeamLinktSnapshot(
   })
   const snapshot: TeamSnapshot = {
     ...candidate,
-    contentHash: sha256(canonicalSnapshotContentV1(candidate)),
+    contentHash: dataSnapshotSemanticHash(candidate),
   }
   return {
     snapshot,

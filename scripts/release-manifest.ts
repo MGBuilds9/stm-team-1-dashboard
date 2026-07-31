@@ -1,13 +1,16 @@
-import { createHash } from "node:crypto"
 import fs from "node:fs/promises"
 import path from "node:path"
 import { pathToFileURL } from "node:url"
 
-import {
-  canonicalSnapshotContentV1,
-  parseTeamSnapshotV3,
-} from "@basketball-os/public-contracts"
 import { z } from "zod"
+
+import { assertSnapshotIdentityMatchesConfig } from "../src/data/config"
+import {
+  readValidatedDataPair,
+  validateDataPairV3,
+  verifyDataSnapshotV3,
+} from "./data-receipt"
+import { readTeamConfig } from "./team-config"
 
 const revisionSchema = z.union([
   z.literal("local"),
@@ -59,32 +62,39 @@ export function releaseMatches(
 }
 
 export function verifiedSnapshotContentHash(input: unknown): string {
-  const snapshot = parseTeamSnapshotV3(input)
-  const computed = createHash("sha256")
-    .update(canonicalSnapshotContentV1(snapshot))
-    .digest("hex")
-  if (computed !== snapshot.contentHash) {
-    throw new Error("Snapshot semantic content hash does not match")
-  }
-  return computed
+  return verifyDataSnapshotV3(input).contentHash
 }
 
-async function writeManifest(): Promise<void> {
-  const snapshot = JSON.parse(
-    await fs.readFile(path.join(process.cwd(), "data", "snapshot.json"), "utf8")
-  )
+export function verifiedDataPairContentHash(
+  snapshotInput: unknown,
+  receiptInput: unknown
+): string {
+  return validateDataPairV3(snapshotInput, receiptInput).snapshot.contentHash
+}
+
+export async function writeManifest(
+  root = process.cwd()
+): Promise<ReleaseManifest> {
+  const pair = await readValidatedDataPair({
+    snapshotFile: path.join(root, "data", "snapshot.json"),
+    receiptFile: path.join(root, "data", "receipt.json"),
+  })
+  if (!pair) throw new Error("Validated data pair is required")
+  const config = await readTeamConfig(path.join(root, "config", "team.json"))
+  assertSnapshotIdentityMatchesConfig(pair.snapshot, config)
   const manifest = buildReleaseManifest({
     codeRevision: process.env.CODE_REVISION ?? "local",
     dataRevision: process.env.DATA_REVISION ?? "local",
-    snapshotContentHash: verifiedSnapshotContentHash(snapshot),
+    snapshotContentHash: pair.snapshot.contentHash,
   })
-  const output = path.join(process.cwd(), "dist", "release.json")
+  const output = path.join(root, "dist", "release.json")
   await fs.writeFile(output, `${JSON.stringify(manifest, null, 2)}\n`, {
     encoding: "utf8",
     flag: "wx",
     mode: 0o644,
   })
-  process.stdout.write(`Wrote ${path.relative(process.cwd(), output)}.\n`)
+  process.stdout.write(`Wrote ${path.relative(root, output)}.\n`)
+  return manifest
 }
 
 async function compareManifest(args: string[]): Promise<void> {

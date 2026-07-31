@@ -7,9 +7,28 @@ const ciWorkflow = fs.readFileSync(".github/workflows/ci.yml", "utf8")
 const publishWorkflow = fs.readFileSync(".github/workflows/publish.yml", "utf8")
 const syncWorkflow = fs.readFileSync(".github/workflows/sync.yml", "utf8")
 const npmConfiguration = fs.readFileSync(".npmrc", "utf8")
+const packageConfiguration = JSON.parse(
+  fs.readFileSync("package.json", "utf8")
+) as {
+  scripts: Record<string, string>
+}
+
+function expectInOrder(workflow: string, markers: string[]): void {
+  const positions = markers.map((marker) => {
+    const position = workflow.indexOf(marker)
+    expect(
+      position,
+      `Missing workflow marker: ${marker}`
+    ).toBeGreaterThanOrEqual(0)
+    return position
+  })
+  for (let index = 1; index < positions.length; index += 1) {
+    expect(positions[index - 1]).toBeLessThan(positions[index])
+  }
+}
 
 describe("sync and exact-artifact publication workflow", () => {
-  it("keeps both workflow files valid YAML", async () => {
+  it("keeps all workflow files valid YAML", async () => {
     await expect(format(ciWorkflow, { parser: "yaml" })).resolves.toBeTypeOf(
       "string"
     )
@@ -29,6 +48,77 @@ describe("sync and exact-artifact publication workflow", () => {
         expect(install[1]).toContain("--ignore-scripts")
       }
     }
+  })
+
+  it("uses the shared vendor-gated data-lineage verifier", () => {
+    expect(packageConfiguration.scripts["verify:data-lineage"]).toBe(
+      "npm run verify:vendor && tsx scripts/verify-data-lineage.ts"
+    )
+  })
+
+  it("verifies depth-two data checkouts before copying, probing, or building", () => {
+    for (const workflow of [ciWorkflow, publishWorkflow, syncWorkflow]) {
+      expect(
+        workflow.match(/path: data-source\n\s+fetch-depth: 2/g)
+      ).toHaveLength(1)
+    }
+
+    expectInOrder(ciWorkflow, [
+      "Check out latest validated data",
+      "Install dependencies",
+      "Verify checked-out data lineage",
+      "Prepare validated snapshot",
+      "Verify application",
+    ])
+    expectInOrder(syncWorkflow, [
+      "Check out last-known-good data",
+      "Install dependencies",
+      "Verify last-known-good data lineage",
+      "Restore last-known-good snapshot",
+      "Probe and validate configured league",
+    ])
+    expectInOrder(publishWorkflow, [
+      "Check out latest validated data",
+      "Install dependencies",
+      "Verify exact data lineage",
+      "Prepare verified snapshot",
+      "Run the complete release gate",
+    ])
+
+    expect(
+      ciWorkflow.match(/npm run verify:data-lineage -- data-source/g)
+    ).toHaveLength(1)
+    expect(
+      publishWorkflow.match(/npm run verify:data-lineage -- data-source/g)
+    ).toHaveLength(1)
+  })
+
+  it("verifies a new data commit before the sync workflow pushes it", () => {
+    expectInOrder(syncWorkflow, [
+      "Commit one validated snapshot revision",
+      "Verify new data lineage before push",
+      "Push verified data revision",
+      "Reconcile the expected release with live Pages",
+    ])
+    expect(
+      syncWorkflow.match(/npm run verify:data-lineage -- data-source/g)
+    ).toHaveLength(2)
+    const commitStart = syncWorkflow.indexOf(
+      "Commit one validated snapshot revision"
+    )
+    const verifyStart = syncWorkflow.indexOf(
+      "Verify new data lineage before push"
+    )
+    expect(syncWorkflow.slice(commitStart, verifyStart)).not.toContain(
+      "git push"
+    )
+  })
+
+  it("serializes data sync runs without canceling an in-flight update", () => {
+    expect(syncWorkflow).toContain(
+      "group: basketball-data-sync-${{ github.repository }}"
+    )
+    expect(syncWorkflow).toContain("cancel-in-progress: false")
   })
 
   it("reconciles the exact code, data, and snapshot revisions against live Pages", () => {
