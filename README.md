@@ -18,8 +18,21 @@ from this canonical base.
 
 The app does not scrape a league in the browser. `npm run sync` selects the adapter
 declared in `config/team.json`, whitelists a provider response into `TeamSnapshot`
-v2, validates it with Zod, and writes only normalized data. A malformed or
+V3 from Basketball OS, computes its canonical semantic hash, validates it with the
+shared public contract, and writes only normalized data. A malformed or
 inconsistent update fails before it can replace the last-known-good snapshot.
+
+Game-video availability is explicit: `verified_exact` opens the reviewed game
+upload, `channel_only` links to the configured league channel with a reason, and
+`not_expected` is limited to canceled and bye games. Exact links survive source
+outages and are never replaced automatically by a different upload.
+
+`npm run import:release` is the signed consumer boundary. It verifies the exact
+Basketball OS release bytes, Ed25519 signature, team/league/season scope, sequence,
+previous digest, audience, and video transitions before atomically replacing the
+last-known-good release triplet. Team projects pin their allowed public keys in
+`config/release-trust.json`; the reusable base intentionally ships with no trusted
+production key.
 
 STM pages are parsed from server-rendered HTML. TeamLinkt standings and leaders are
 derived from official season scores and published event stat lines because its
@@ -31,7 +44,7 @@ never committed raw.
 Node 22 is the supported runtime.
 
 ```bash
-npm ci
+npm ci --ignore-scripts
 npm run sync
 npm run dev
 ```
@@ -47,6 +60,9 @@ npm run test:e2e
 
 `npm run fixtures:capture` refreshes sanitized STM parser fixtures. Provider-neutral
 and TeamLinkt normalization tests run with `npm test`.
+
+`npm run migrate:snapshot` upgrades an existing V2 snapshot in place, maps its
+legacy video fields into the V3 union, and recomputes the semantic content hash.
 
 ## Create a team project
 

@@ -73,7 +73,8 @@ describe("TeamLinkt provider normalization", () => {
     const games = selectTeamLinktGames(
       events,
       "892656",
-      "2026-07-29T12:00:00.000Z"
+      "2026-07-29T12:00:00.000Z",
+      "https://www.youtube.com/@SBLHoops"
     )
     expect(games.map((game) => game.state)).toEqual([
       "final",
@@ -86,6 +87,14 @@ describe("TeamLinkt provider normalization", () => {
       teamScore: 66,
       opponentScore: 59,
       result: "W",
+      video: {
+        state: "channel_only",
+        reason: "not_found",
+      },
+    })
+    expect(games[1].video).toEqual({
+      state: "not_expected",
+      reason: "bye",
     })
   })
 
@@ -111,9 +120,6 @@ describe("YouTube upload discovery", () => {
   it("extracts unique direct video IDs from the public channel payload", () => {
     const html =
       '{"videoId":"bmWpYMKVNEI"}{"videoId":"bmWpYMKVNEI"}{"videoId":"6mEdC0PTWgA"}'
-    expect(extractYouTubeVideoIds(html)).toEqual([
-      "bmWpYMKVNEI",
-      "6mEdC0PTWgA",
-    ])
+    expect(extractYouTubeVideoIds(html)).toEqual(["bmWpYMKVNEI", "6mEdC0PTWgA"])
   })
 })

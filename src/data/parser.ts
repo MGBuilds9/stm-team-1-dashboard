@@ -1,21 +1,24 @@
 import { load, type CheerioAPI } from "cheerio"
+import type { TeamSnapshotV3Unhashed } from "@basketball-os/public-contracts"
 
 import { deriveLeaders, deriveTeamStats } from "./derive"
+import { compareUnicodeCodePointStringsV1 } from "./hash"
 import type {
   BoxScorePlayerLine,
   BoxScoreSide,
   GameBoxScore,
   GameRow,
+  GameVideoAvailability,
   PlayerRow,
   ProviderCapabilities,
   ShootingLine,
   StandingRow,
   TeamIdentity,
-  TeamSnapshot,
 } from "./types"
 
 export const TEAM_1_ID = "0dce2102-2b06-4750-b25d-8cbdba23d2c5"
 export const STM_BASE_URL = "https://stmsports.ca/mens-basketball"
+export const STM_YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@STMSports-t3z"
 
 export const SOURCE_URLS = {
   schedule: `${STM_BASE_URL}/schedule?view=all`,
@@ -140,7 +143,20 @@ function stateFor(game: RawGame): GameRow["state"] {
   return "scheduled"
 }
 
-export function parseSchedule(html: string): GameRow[] {
+function initialVideoAvailability(
+  state: GameRow["state"],
+  channelUrl: string
+): GameVideoAvailability {
+  if (state === "bye" || state === "canceled") {
+    return { state: "not_expected", reason: state }
+  }
+  return { state: "channel_only", channelUrl, reason: "not_found" }
+}
+
+export function parseSchedule(
+  html: string,
+  channelUrl = STM_YOUTUBE_CHANNEL_URL
+): GameRow[] {
   const games = rawGamesFromSchedule(html)
     .filter(
       (game) => game.homeTeamId === TEAM_1_ID || game.awayTeamId === TEAM_1_ID
@@ -182,11 +198,12 @@ export function parseSchedule(html: string): GameRow[] {
         result,
         officialUrl: `${STM_BASE_URL}/game/${game.id}`,
         hasBoxScore: false,
-        videoUrl: null,
-        videoTitle: null,
+        video: initialVideoAvailability(state, channelUrl),
       }
     })
-  return games.sort((a, b) => a.scheduledAt!.localeCompare(b.scheduledAt!))
+  return games.sort((a, b) =>
+    compareUnicodeCodePointStringsV1(a.scheduledAt ?? "", b.scheduledAt ?? "")
+  )
 }
 
 export function parseStandings(html: string): StandingRow[] {
@@ -352,17 +369,16 @@ export function parseBoxScore(
 
 export function assembleSnapshot(input: {
   generatedAt: string
-  contentHash: string
   standings: StandingRow[]
   roster: PlayerRow[]
   games: GameRow[]
   leaguePlayers: ParsedLeaguePlayer[]
   boxScores: GameBoxScore[]
-  sources: TeamSnapshot["sources"]
+  sources: TeamSnapshotV3Unhashed["sources"]
   identity?: TeamIdentity
   capabilities?: ProviderCapabilities
   sourceTeamName?: string
-}): TeamSnapshot {
+}): TeamSnapshotV3Unhashed {
   const identity = input.identity ?? {
     provider: "stm",
     leagueId: "mens-basketball",
@@ -382,9 +398,7 @@ export function assembleSnapshot(input: {
     throw new Error(`${sourceTeamName} is missing from standings`)
   }
   const standings = input.standings.map((row) =>
-    row.teamId === identity.teamId
-      ? { ...row, teamName: identity.name }
-      : row
+    row.teamId === identity.teamId ? { ...row, teamName: identity.name } : row
   )
   const gamesWithBoxScores = new Set(
     input.boxScores.map((score) => score.gameId)
@@ -394,9 +408,8 @@ export function assembleSnapshot(input: {
     hasBoxScore: gamesWithBoxScores.has(game.id),
   }))
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     generatedAt: input.generatedAt,
-    contentHash: input.contentHash,
     identity,
     capabilities: input.capabilities ?? {
       roster: true,

@@ -20,9 +20,8 @@ import {
   Users,
 } from "lucide-react"
 
-import snapshotJson from "../data/snapshot.json"
+import snapshotJson from "../data/snapshot.json" with { type: "json" }
 import { useTheme } from "@/components/theme-provider"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -236,46 +235,76 @@ function resultBadge(game: GameRow) {
   )
 }
 
-function GameVideoAction({
+const CHANNEL_ONLY_COPY = {
+  not_found: {
+    badge: "Not uploaded yet",
+    description: "No verified game video is uploaded yet",
+  },
+  ambiguous: {
+    badge: "Upload needs review",
+    description: "The possible game video match needs review",
+  },
+  source_unavailable: {
+    badge: "Upload status unavailable",
+    description: "Game video availability could not be checked",
+  },
+} as const
+
+export function GameVideoAction({
   game,
   size = "sm",
 }: {
   game: GameRow
   size?: "sm" | "default"
 }) {
-  if (game.videoUrl) {
+  const matchup = `${snapshot.team.name} ${
+    game.isHome ? "versus" : "at"
+  } ${game.opponentName}`
+
+  if (game.video.state === "verified_exact") {
     return (
-      <Button asChild size={size} className="video-ready-button">
+      <Button asChild size={size} className="video-ready-button min-h-11">
         <a
-          href={game.videoUrl}
+          href={game.video.videoUrl}
           target="_blank"
           rel="noreferrer"
-          aria-label={`Watch ${snapshot.team.name} ${game.isHome ? "versus" : "at"} ${game.opponentName} on YouTube`}
+          aria-label={`Watch ${matchup} on YouTube`}
+          title={game.video.videoTitle}
         >
-          <CirclePlay />
+          <CirclePlay data-icon="inline-start" />
           Watch game
         </a>
       </Button>
     )
   }
+
+  if (game.video.state === "not_expected") return null
+
+  const copy = CHANNEL_ONLY_COPY[game.video.reason]
+
   return (
-    <Button
-      asChild
-      size={size}
-      variant="secondary"
-      className="video-pending-button"
+    <div
+      className="flex min-h-11 flex-wrap items-center gap-2"
+      data-video-state="channel_only"
     >
-      <a
-        href={snapshot.identity.youtubeChannelUrl}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Game video pending; check the ${providerLabel} YouTube channel`}
-        title="The direct game upload is not available yet"
+      <Badge variant="outline">{copy.badge}</Badge>
+      <Button
+        asChild
+        size={size}
+        variant="secondary"
+        className="video-pending-button min-h-11"
       >
-        <CirclePlay />
-        Check channel
-      </a>
-    </Button>
+        <a
+          href={game.video.channelUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${copy.description} for ${matchup}; open the ${providerLabel} YouTube channel`}
+        >
+          <CirclePlay data-icon="inline-start" />
+          Check channel
+        </a>
+      </Button>
+    </div>
   )
 }
 
@@ -476,9 +505,7 @@ function RecentFormCard() {
     )
     .slice(-5)
   const maxMargin = Math.max(
-    ...games.map((game) =>
-      Math.abs(game.teamScore! - game.opponentScore!)
-    ),
+    ...games.map((game) => Math.abs(game.teamScore! - game.opponentScore!)),
     10
   )
   return (
@@ -624,9 +651,7 @@ function GameSummary({
 
 function OverviewView() {
   const nextGame = snapshot.games.find((game) => game.state === "scheduled")
-  const latestResult = snapshot.games
-    .filter((game) => game.result)
-    .at(-1)
+  const latestResult = snapshot.games.filter((game) => game.result).at(-1)
   const recent = snapshot.games
     .filter((game) => game.result)
     .slice(-3)
@@ -819,7 +844,7 @@ function StandingsView() {
   return (
     <Card>
       <CardHeader>
-          <CardTitle>{snapshot.team.season} standings</CardTitle>
+        <CardTitle>{snapshot.team.season} standings</CardTitle>
       </CardHeader>
       <CardContent className="px-0">
         <ScrollArea className="w-full">
@@ -870,9 +895,7 @@ function StandingsView() {
                         {row.form.map((result, index) => (
                           <Badge
                             key={`${row.teamId}-${index}`}
-                            variant={
-                              result === "W" ? "default" : "destructive"
-                            }
+                            variant={result === "W" ? "default" : "destructive"}
                             className="size-6 justify-center p-0"
                           >
                             {result}
@@ -1338,11 +1361,6 @@ export default function App() {
       `${snapshot.team.name} schedule, standings, leaders, statistics, box scores, and game videos.`
     )
   }, [])
-  const [stale] = React.useState(
-    () =>
-      Date.now() - new Date(snapshot.generatedAt).getTime() >
-      30 * 60 * 60 * 1000
-  )
   return (
     <TooltipProvider>
       <a href="#main-content" className="skip-link">
@@ -1372,7 +1390,7 @@ export default function App() {
             </div>
             <div className="ml-auto flex items-center gap-1">
               <Badge variant="outline" className="hidden lg:inline-flex">
-                <ShieldCheck /> Live source validated
+                <ShieldCheck /> Validated snapshot
               </Badge>
               <ThemeToggle />
             </div>
@@ -1381,26 +1399,12 @@ export default function App() {
             <div className="page-intro">
               <p>{copy.description}</p>
             </div>
-            {stale && (
-              <Alert variant="destructive" className="mb-6">
-                <Clock3 />
-                <AlertTitle>Source check is stale</AlertTitle>
-                <AlertDescription>
-                  The last validated snapshot is older than 30 hours. The stored
-                  dashboard remains available while the next sync is
-                  investigated.
-                </AlertDescription>
-              </Alert>
-            )}
             <ActiveView route={route} />
             <footer className="app-footer">
               <div>
-                <p className="font-bold">
-                  {snapshot.team.name} Command Center
-                </p>
+                <p className="font-bold">{snapshot.team.name} Command Center</p>
                 <p>
-                  Operational data from {providerLabel}. Unlisted and
-                  noindexed.
+                  Operational data from {providerLabel}. Unlisted and noindexed.
                 </p>
               </div>
               <div className="text-right">

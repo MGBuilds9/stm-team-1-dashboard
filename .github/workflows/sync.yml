@@ -18,7 +18,10 @@ jobs:
     timeout-minutes: 10
     outputs:
       changed: ${{ steps.result.outputs.changed }}
+      code_revision: ${{ steps.result.outputs.code_revision }}
+      content_hash: ${{ steps.result.outputs.content_hash }}
       data_revision: ${{ steps.result.outputs.data_revision }}
+      publish_required: ${{ steps.result.outputs.publish_required }}
     steps:
       - name: Check out application code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -38,7 +41,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Restore last-known-good snapshot
         run: |
@@ -71,19 +74,64 @@ jobs:
           git commit -m "data: refresh team $team_name snapshot $generated_at"
           git push origin HEAD:data
 
-      - name: Report synchronization result
+      - name: Reconcile the expected release with live Pages
         id: result
         env:
           CHANGED: ${{ steps.probe.outputs.changed }}
+          DASHBOARD_PUBLIC_URL: ${{ vars.DASHBOARD_PUBLIC_URL }}
         run: |
+          set -euo pipefail
+          code_revision="$(git rev-parse HEAD)"
+          data_revision="$(git -C data-source rev-parse HEAD)"
+          snapshot_content_hash="$(node -p 'require("./data/snapshot.json").contentHash')"
+          repository_name="${GITHUB_REPOSITORY#*/}"
+          release_base_url="${DASHBOARD_PUBLIC_URL:-https://${GITHUB_REPOSITORY_OWNER}.github.io/${repository_name}}"
+          release_url="${release_base_url%/}/release.json?expected_data_revision=${data_revision}&run_id=${GITHUB_RUN_ID}&attempt=${GITHUB_RUN_ATTEMPT}"
+          live_manifest="$(mktemp)"
+          trap 'rm -f "$live_manifest"' EXIT
+          live_matches=false
+
+          if curl \
+            --fail \
+            --silent \
+            --show-error \
+            --proto '=https' \
+            --connect-timeout 5 \
+            --max-time 20 \
+            --max-filesize 65536 \
+            --header 'Accept: application/json' \
+            --header 'Cache-Control: no-cache' \
+            --output "$live_manifest" \
+            "$release_url" &&
+            npx --no-install tsx scripts/release-manifest.ts matches \
+              "$live_manifest" \
+              "$code_revision" \
+              "$data_revision" \
+              "$snapshot_content_hash"
+          then
+            live_matches=true
+          fi
+
+          if [[ "$CHANGED" == "true" || "$live_matches" != "true" ]]; then
+            if [[ "$live_matches" != "true" ]]; then
+              echo "Live release is missing or does not match the expected code/data pair."
+            fi
+            echo "publish_required=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish_required=false" >> "$GITHUB_OUTPUT"
+          fi
+
           echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
-          echo "data_revision=$(git -C data-source rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "code_revision=$code_revision" >> "$GITHUB_OUTPUT"
+          echo "content_hash=$snapshot_content_hash" >> "$GITHUB_OUTPUT"
+          echo "data_revision=$data_revision" >> "$GITHUB_OUTPUT"
 
   publish:
     needs: sync
-    if: needs.sync.outputs.changed == 'true'
+    if: needs.sync.outputs.publish_required == 'true'
     uses: ./.github/workflows/publish.yml
     with:
+      expected_code_revision: ${{ needs.sync.outputs.code_revision }}
       expected_data_revision: ${{ needs.sync.outputs.data_revision }}
 
   report:
@@ -93,17 +141,80 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Check out application configuration
+      - name: Check out release verifier and application configuration
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: main
-          sparse-checkout: config
+          ref: ${{ needs.sync.outputs.code_revision || 'main' }}
+
+      - name: Install Node 22
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install release-verifier dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Prove the expected release is live
+        id: live
+        env:
+          DASHBOARD_PUBLIC_URL: ${{ vars.DASHBOARD_PUBLIC_URL }}
+          EXPECTED_CODE_REVISION: ${{ needs.sync.outputs.code_revision }}
+          EXPECTED_CONTENT_HASH: ${{ needs.sync.outputs.content_hash }}
+          EXPECTED_DATA_REVISION: ${{ needs.sync.outputs.data_revision }}
+          PUBLISH_REQUIRED: ${{ needs.sync.outputs.publish_required }}
+          PUBLISH_RESULT: ${{ needs.publish.result }}
+        run: |
+          set -euo pipefail
+          repository_name="${GITHUB_REPOSITORY#*/}"
+          release_base_url="${DASHBOARD_PUBLIC_URL:-https://${GITHUB_REPOSITORY_OWNER}.github.io/${repository_name}}"
+          release_url="${release_base_url%/}/release.json?expected_data_revision=${EXPECTED_DATA_REVISION}&run_id=${GITHUB_RUN_ID}&attempt=${GITHUB_RUN_ATTEMPT}"
+          live_manifest="$(mktemp)"
+          trap 'rm -f "$live_manifest"' EXIT
+          max_attempts=1
+          live_matches=false
+
+          if [[ "$PUBLISH_REQUIRED" == "true" && "$PUBLISH_RESULT" == "success" ]]; then
+            max_attempts=6
+          fi
+
+          for ((attempt = 1; attempt <= max_attempts; attempt += 1)); do
+            if curl \
+              --fail \
+              --silent \
+              --show-error \
+              --proto '=https' \
+              --connect-timeout 5 \
+              --max-time 20 \
+              --max-filesize 65536 \
+              --header 'Accept: application/json' \
+              --header 'Cache-Control: no-cache' \
+              --output "$live_manifest" \
+              "$release_url" &&
+              npx --no-install tsx scripts/release-manifest.ts matches \
+                "$live_manifest" \
+                "$EXPECTED_CODE_REVISION" \
+                "$EXPECTED_DATA_REVISION" \
+                "$EXPECTED_CONTENT_HASH"
+            then
+              live_matches=true
+              break
+            fi
+            if (( attempt < max_attempts )); then
+              sleep 5
+            fi
+          done
+
+          echo "matches=$live_matches" >> "$GITHUB_OUTPUT"
 
       - name: Open, update, or close the sanitized sync issue
+        if: always()
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
+          LIVE_RELEASE_MATCHES: ${{ steps.live.outputs.matches }}
           SYNC_RESULT: ${{ needs.sync.result }}
           PUBLISH_RESULT: ${{ needs.publish.result }}
+          PUBLISH_REQUIRED: ${{ needs.sync.outputs.publish_required }}
         with:
           script: |
             const fs = require("fs");
@@ -112,7 +223,14 @@ jobs:
             );
             const title = `${config.teamName} sync failing`;
             const syncFailed = process.env.SYNC_RESULT !== "success";
-            const publishFailed = !["success", "skipped"].includes(process.env.PUBLISH_RESULT);
+            const publishRequired = process.env.PUBLISH_REQUIRED === "true";
+            const publishResult = process.env.PUBLISH_RESULT;
+            const liveReleaseMatches = process.env.LIVE_RELEASE_MATCHES === "true";
+            const publishFailed =
+              (publishRequired
+                ? publishResult !== "success"
+                : !["success", "skipped"].includes(publishResult)) ||
+              !liveReleaseMatches;
             const failed = syncFailed || publishFailed;
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner,

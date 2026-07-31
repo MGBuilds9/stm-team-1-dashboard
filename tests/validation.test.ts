@@ -29,8 +29,6 @@ describe("TeamSnapshot validation", () => {
     seed.opponentScore = null
     seed.result = null
     seed.hasBoxScore = false
-    seed.videoUrl = null
-    seed.videoTitle = null
     const states = [
       "scheduled",
       "live",
@@ -49,6 +47,14 @@ describe("TeamSnapshot validation", () => {
         scheduledAt: state === "tbd" ? null : `2026-08-08T${12 + index}:00:00`,
         displayTime: state === "tbd" ? null : `${12 + index}:00`,
         state,
+        video:
+          state === "bye" || state === "canceled"
+            ? { state: "not_expected" as const, reason: state }
+            : {
+                state: "channel_only" as const,
+                channelUrl: base.identity.youtubeChannelUrl,
+                reason: "not_found" as const,
+              },
       }))
     )
     expect(() => teamSnapshotSchema.parse(snapshot)).not.toThrow()
@@ -76,8 +82,13 @@ describe("TeamSnapshot validation", () => {
     [
       "unsafe YouTube URLs",
       (snapshot: TeamSnapshot) => {
-        snapshot.games[0].videoUrl = "https://evil.example/watch?v=abcdefghijk"
-        snapshot.games[0].videoTitle = "Wrong source"
+        snapshot.games[0].video = {
+          state: "verified_exact",
+          channelUrl: snapshot.identity.youtubeChannelUrl,
+          videoUrl: "https://evil.example/watch?v=abcdefghijk",
+          videoTitle: "Wrong source",
+          matchedBy: "verified_override",
+        }
       },
     ],
     [
@@ -115,6 +126,17 @@ describe("TeamSnapshot validation", () => {
       .flatMap((score) => [...score.home.players, ...score.away.players])
       .find((player) => player.fieldGoals.attempted === 0)
     expect(zeroAttempt?.fieldGoals.percentage).toBeNull()
+  })
+
+  it("allows not_expected only for bye and canceled games", () => {
+    const snapshot = clone()
+    snapshot.games[0].video = {
+      state: "not_expected",
+      reason: "canceled",
+    }
+    expect(() => teamSnapshotSchema.parse(snapshot)).toThrow(
+      /Only bye or canceled games/
+    )
   })
 
   it("keeps unsafe HTML APIs out of application source", () => {

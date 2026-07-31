@@ -7,6 +7,7 @@ import type {
   ShootingLine,
   TeamStats,
 } from "./types"
+import { compareUnicodeCodePointStringsV1 } from "./hash"
 
 const CATEGORIES: Array<{
   category: LeaderCategory
@@ -31,7 +32,9 @@ export function deriveLeaders(
   return CATEGORIES.map(({ category, label, unit }) => {
     const max = Math.max(...rows.map((row) => row[category]), 0)
     const tiedRows = rows.filter((row) => row[category] === max)
-    const winner = [...tiedRows].sort((a, b) => a.name.localeCompare(b.name))[0]
+    const winner = [...tiedRows].sort((a, b) =>
+      compareUnicodeCodePointStringsV1(a.name, b.name)
+    )[0]
     return {
       category,
       label,

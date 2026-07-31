@@ -35,7 +35,7 @@ jobs:
           cp data-source/receipt.json data/receipt.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

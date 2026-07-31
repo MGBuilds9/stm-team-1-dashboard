@@ -73,8 +73,11 @@ describe("sanitized live-source fixtures", () => {
       officialUrl:
         "https://stmsports.ca/mens-basketball/game/ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
       hasBoxScore: true,
-      videoUrl: null,
-      videoTitle: null,
+      video: {
+        state: "channel_only",
+        channelUrl: "https://www.youtube.com/@STMSports-t3z",
+        reason: "not_found",
+      },
     }
     const boxScore = parseBoxScore(fixture(`box-score-${game.id}.html`), game)
     expect(boxScore?.home.teamName).toBe("Team 2")

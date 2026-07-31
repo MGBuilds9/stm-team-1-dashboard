@@ -6,12 +6,20 @@ on:
       - main
   workflow_dispatch:
     inputs:
+      expected_code_revision:
+        description: Optional application revision that must be deployed
+        required: false
+        type: string
       expected_data_revision:
         description: Optional data revision that must be deployed
         required: false
         type: string
   workflow_call:
     inputs:
+      expected_code_revision:
+        description: Optional application revision that must be deployed
+        required: false
+        type: string
       expected_data_revision:
         description: Optional data revision that must be deployed
         required: false
@@ -50,10 +58,21 @@ jobs:
       - name: Resolve tested revisions
         id: revisions
         env:
+          EXPECTED_CODE_REVISION: ${{ inputs.expected_code_revision }}
           EXPECTED_DATA_REVISION: ${{ inputs.expected_data_revision }}
         run: |
+          set -euo pipefail
           code_revision="$(git rev-parse HEAD)"
           data_revision="$(git -C data-source rev-parse HEAD)"
+          if [[ -n "$EXPECTED_CODE_REVISION" && -z "$EXPECTED_DATA_REVISION" ]] ||
+            [[ -z "$EXPECTED_CODE_REVISION" && -n "$EXPECTED_DATA_REVISION" ]]; then
+            echo "Expected code and data revisions must be provided together." >&2
+            exit 1
+          fi
+          if [[ -n "$EXPECTED_CODE_REVISION" && "$code_revision" != "$EXPECTED_CODE_REVISION" ]]; then
+            echo "Expected code $EXPECTED_CODE_REVISION but resolved $code_revision" >&2
+            exit 1
+          fi
           if [[ -n "$EXPECTED_DATA_REVISION" && "$data_revision" != "$EXPECTED_DATA_REVISION" ]]; then
             echo "Expected data $EXPECTED_DATA_REVISION but resolved $data_revision" >&2
             exit 1
@@ -71,7 +90,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

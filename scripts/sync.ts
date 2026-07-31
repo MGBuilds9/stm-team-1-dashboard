@@ -1,5 +1,8 @@
 import fs from "node:fs/promises"
 import path from "node:path"
+import { pathToFileURL } from "node:url"
+
+import { canonicalSnapshotContentV1 } from "@basketball-os/public-contracts"
 
 import {
   assembleSnapshot,
@@ -13,12 +16,11 @@ import {
 import {
   teamConfigSchema,
   type StmTeamConfig,
+  type TeamConfig,
 } from "../src/data/config"
-import { stableStringify } from "../src/data/hash"
 import { teamSnapshotSchema } from "../src/data/schema"
 import type {
   GameBoxScore,
-  GameRow,
   SourceReference,
   TeamSnapshot,
 } from "../src/data/types"
@@ -27,8 +29,7 @@ import { resolveGameVideos } from "./youtube"
 import { buildTeamLinktSnapshot } from "./providers/teamlinkt"
 
 const ROOT = process.cwd()
-const DATA_DIRECTORY =
-  process.env.DASHBOARD_DATA_DIR ?? path.join(ROOT, "data")
+const DATA_DIRECTORY = process.env.DASHBOARD_DATA_DIR ?? path.join(ROOT, "data")
 const SNAPSHOT_PATH = path.join(DATA_DIRECTORY, "snapshot.json")
 const RECEIPT_PATH = path.join(DATA_DIRECTORY, "receipt.json")
 
@@ -38,6 +39,53 @@ interface SyncBuild {
   gameCount: number
   boxScoreCount: number
   matchedVideoCount: number
+}
+
+export async function readPreviousSnapshot(
+  file: string,
+  config: TeamConfig
+): Promise<TeamSnapshot | null> {
+  let raw: unknown
+  try {
+    raw = JSON.parse(await fs.readFile(file, "utf8"))
+  } catch (error) {
+    if (
+      error !== null &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "ENOENT"
+    ) {
+      return null
+    }
+    throw error
+  }
+  if (
+    raw !== null &&
+    typeof raw === "object" &&
+    "schemaVersion" in raw &&
+    raw.schemaVersion === 2
+  ) {
+    throw new Error(
+      "Existing TeamSnapshotV2 must be upgraded with npm run migrate:snapshot before synchronization"
+    )
+  }
+  const snapshot = teamSnapshotSchema.parse(raw)
+  if (
+    snapshot.identity.provider !== config.provider ||
+    snapshot.identity.leagueId !== config.leagueId ||
+    snapshot.identity.seasonId !== config.seasonId ||
+    snapshot.identity.teamId !== config.teamId ||
+    snapshot.identity.name !== config.teamName ||
+    snapshot.identity.seasonName !== config.seasonName ||
+    snapshot.identity.leagueName !== config.leagueName ||
+    snapshot.identity.timezone !== config.timezone ||
+    snapshot.identity.youtubeChannelUrl !== config.youtube.channelUrl
+  ) {
+    throw new Error(
+      "Existing snapshot identity does not match the configured team"
+    )
+  }
+  return snapshot
 }
 
 async function buildStmSnapshot(
@@ -54,39 +102,32 @@ async function buildStmSnapshot(
   const source = Object.fromEntries(
     entries.map((entry) => [entry.label, entry.html])
   )
-  const parsedGames = parseSchedule(source.schedule)
-  let games: GameRow[]
-  let videoSource: SourceReference | null = null
-  let matchedVideoCount = 0
-  try {
-    const videoResolution = await resolveGameVideos({
-      games: parsedGames,
-      channelUrl: config.youtube.channelUrl,
-      teamAliases: config.youtube.teamAliases,
-    })
-    games = videoResolution.games
-    matchedVideoCount = videoResolution.matchedCount
-    videoSource = {
-      label: "youtube-channel",
-      url: config.youtube.channelUrl,
-      checkedAt,
-      hash: sha256(videoResolution.channelHtml),
-    }
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error)
+  const parsedGames = parseSchedule(source.schedule, config.youtube.channelUrl)
+  const videoResolution = await resolveGameVideos({
+    games: parsedGames,
+    previousGames: previousSnapshot?.games,
+    channelUrl: config.youtube.channelUrl,
+    teamAliases: config.youtube.teamAliases,
+  })
+  const games = videoResolution.games
+  const matchedVideoCount = videoResolution.matchedCount
+  const videoSource: SourceReference | null =
+    videoResolution.channelHtml === null
+      ? (previousSnapshot?.sources.find(
+          (source) =>
+            source.label === "youtube-channel" &&
+            source.url === config.youtube.channelUrl
+        ) ?? null)
+      : {
+          label: "youtube-channel",
+          url: config.youtube.channelUrl,
+          checkedAt,
+          hash: sha256(videoResolution.channelHtml),
+        }
+  if (videoResolution.channelHtml === null) {
     process.stderr.write(
-      `YouTube check unavailable; preserving verified game links: ${message}\n`
+      "YouTube source unavailable; preserving previously verified exact game links.\n"
     )
-    games = parsedGames.map((game) => {
-      const previous = previousSnapshot?.games.find(
-        (candidate) => candidate.id === game.id
-      )
-      return {
-        ...game,
-        videoUrl: previous?.videoUrl ?? null,
-        videoTitle: previous?.videoTitle ?? null,
-      }
-    })
   }
   const finalGames = games.filter((game) => game.state === "final")
   const gamePages = await Promise.all(
@@ -127,10 +168,8 @@ async function buildStmSnapshot(
     leaguePlayers: parseLeaguePlayers(source.stats),
     boxScores,
   }
-  const contentHash = sha256(stableStringify(core))
-  const snapshot = assembleSnapshot({
+  const candidate = assembleSnapshot({
     generatedAt: checkedAt,
-    contentHash,
     ...core,
     sources,
     identity: {
@@ -146,6 +185,10 @@ async function buildStmSnapshot(
     },
     sourceTeamName: config.sourceTeamName,
   })
+  const snapshot: TeamSnapshot = {
+    ...candidate,
+    contentHash: sha256(canonicalSnapshotContentV1(candidate)),
+  }
   return {
     snapshot,
     sourceCount: sources.length,
@@ -162,18 +205,11 @@ async function main() {
   const config = teamConfigSchema.parse(
     JSON.parse(await fs.readFile(configPath, "utf8"))
   )
-  let previousSnapshot: TeamSnapshot | null = null
-  try {
-    previousSnapshot = teamSnapshotSchema.parse(
-      JSON.parse(await fs.readFile(SNAPSHOT_PATH, "utf8"))
-    )
-  } catch {
-    // A missing or pre-v2 snapshot is treated as a first validated sync.
-  }
+  const previousSnapshot = await readPreviousSnapshot(SNAPSHOT_PATH, config)
   const build =
     config.provider === "stm"
       ? await buildStmSnapshot(config, checkedAt, previousSnapshot)
-      : await buildTeamLinktSnapshot(config, checkedAt)
+      : await buildTeamLinktSnapshot(config, checkedAt, previousSnapshot)
   const { snapshot } = build
   const validated = teamSnapshotSchema.parse(snapshot)
   const previousHash = previousSnapshot?.contentHash ?? null
@@ -190,7 +226,7 @@ async function main() {
     RECEIPT_PATH,
     `${JSON.stringify(
       {
-        schemaVersion: 2,
+        schemaVersion: 3,
         generatedAt: checkedAt,
         contentHash,
         previousHash,
@@ -208,9 +244,12 @@ async function main() {
   process.stdout.write(`CHANGED ${contentHash}\n`)
 }
 
-main().catch((error: unknown) => {
-  const message =
-    error instanceof Error ? (error.stack ?? error.message) : String(error)
-  process.stderr.write(`${message}\n`)
-  process.exitCode = 1
-})
+const entry = process.argv[1]
+if (entry && import.meta.url === pathToFileURL(entry).href) {
+  main().catch((error: unknown) => {
+    const message =
+      error instanceof Error ? (error.stack ?? error.message) : String(error)
+    process.stderr.write(`${message}\n`)
+    process.exitCode = 1
+  })
+}

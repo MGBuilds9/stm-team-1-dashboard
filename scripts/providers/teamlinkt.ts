@@ -1,8 +1,15 @@
 import { load } from "cheerio"
+import { canonicalSnapshotContentV1 } from "@basketball-os/public-contracts"
 
 import type { TeamLinktTeamConfig } from "../../src/data/config"
-import { stableStringify } from "../../src/data/hash"
-import { assembleSnapshot, type ParsedLeaguePlayer } from "../../src/data/parser"
+import {
+  compareUnicodeCodePointStringsV1,
+  stableStringify,
+} from "../../src/data/hash"
+import {
+  assembleSnapshot,
+  type ParsedLeaguePlayer,
+} from "../../src/data/parser"
 import type {
   BoxScorePlayerLine,
   BoxScoreSide,
@@ -87,14 +94,19 @@ function extractPayload(value: unknown): UnknownRecord {
 function parseCell(value: string): { name: string; score: number | null } {
   const $ = load(`<body>${value}</body>`)
   const name = $("span").first().text().replace(/\s+/g, " ").trim()
-  const scoreMatch = $.root().text().match(/\((\d+)\)\s*$/)
+  const scoreMatch = $.root()
+    .text()
+    .match(/\((\d+)\)\s*$/)
   return {
     name,
     score: scoreMatch ? Number.parseInt(scoreMatch[1], 10) : null,
   }
 }
 
-function publishedDateTime(dateLabel: string, timeLabel: string): {
+function publishedDateTime(
+  dateLabel: string,
+  timeLabel: string
+): {
   date: string
   scheduledAt: string
   displayTime: string
@@ -130,8 +142,7 @@ function publishedDateTime(dateLabel: string, timeLabel: string): {
     date,
     displayTime,
     scheduledAt,
-    epochSeconds:
-      new Date(`${scheduledAt}-04:00`).getTime() / 1000,
+    epochSeconds: new Date(`${scheduledAt}-04:00`).getTime() / 1000,
   }
 }
 
@@ -168,7 +179,8 @@ function normalizeEvent(
 export function selectTeamLinktGames(
   events: NormalizedEvent[],
   selectedTeamId: string,
-  checkedAt: string
+  checkedAt: string,
+  channelUrl: string
 ): GameRow[] {
   const checkedEpoch = new Date(checkedAt).getTime() / 1000
   return events
@@ -183,9 +195,7 @@ export function selectTeamLinktGames(
       const opponentId = isHome ? event.awayTeamId : event.homeTeamId
       const isBye = opponentName.toLowerCase() === "bye"
       const scored =
-        event.homeScore !== null &&
-        event.awayScore !== null &&
-        !isBye
+        event.homeScore !== null && event.awayScore !== null && !isBye
       const state: GameRow["state"] = isBye
         ? "bye"
         : scored
@@ -223,11 +233,15 @@ export function selectTeamLinktGames(
               : "L",
         officialUrl: event.officialUrl,
         hasBoxScore: false,
-        videoUrl: null,
-        videoTitle: null,
+        video:
+          state === "bye"
+            ? { state: "not_expected", reason: "bye" }
+            : { state: "channel_only", channelUrl, reason: "not_found" },
       }
     })
-    .sort((a, b) => a.scheduledAt!.localeCompare(b.scheduledAt!))
+    .sort((a, b) =>
+      compareUnicodeCodePointStringsV1(a.scheduledAt ?? "", b.scheduledAt ?? "")
+    )
 }
 
 export function deriveTeamLinktStandings(
@@ -297,7 +311,7 @@ export function deriveTeamLinktStandings(
       b.winPct - a.winPct ||
       b.differential - a.differential ||
       b.pointsFor - a.pointsFor ||
-      a.teamName.localeCompare(b.teamName)
+      compareUnicodeCodePointStringsV1(a.teamName, b.teamName)
   )
   return rows.map((row, index) => ({ ...row, rank: index + 1 }))
 }
@@ -334,9 +348,8 @@ function shooting(made: number, attempted: number): ShootingLine {
 }
 
 function sumPlayerLines(players: BoxScorePlayerLine[]) {
-  const sum = (
-    pick: (player: BoxScorePlayerLine) => number
-  ): number => players.reduce((total, player) => total + pick(player), 0)
+  const sum = (pick: (player: BoxScorePlayerLine) => number): number =>
+    players.reduce((total, player) => total + pick(player), 0)
   return {
     points: sum((player) => player.points),
     rebounds: sum((player) => player.rebounds),
@@ -394,10 +407,7 @@ function parseStatsSide(
       const freeAttempted = byAbbreviation.get("FTA") ?? 0
       const computedPoints = twoMade * 2 + threeMade * 3 + freeMade
       const publishedPoints = byAbbreviation.get("TP")
-      if (
-        publishedPoints !== undefined &&
-        publishedPoints !== computedPoints
-      ) {
+      if (publishedPoints !== undefined && publishedPoints !== computedPoints) {
         throw new Error(
           `TeamLinkt player ${playerId} has inconsistent point totals`
         )
@@ -566,11 +576,13 @@ function aggregatePlayers(input: {
       (a, b) =>
         (a.jersey ?? Number.MAX_SAFE_INTEGER) -
           (b.jersey ?? Number.MAX_SAFE_INTEGER) ||
-        a.name.localeCompare(b.name)
+        compareUnicodeCodePointStringsV1(a.name, b.name)
     )
 }
 
-function aggregateLeaguePlayers(boxScores: GameBoxScore[]): ParsedLeaguePlayer[] {
+function aggregateLeaguePlayers(
+  boxScores: GameBoxScore[]
+): ParsedLeaguePlayer[] {
   const byPlayer = new Map<
     string,
     {
@@ -675,9 +687,7 @@ export function parseTeamLinktEvents(
 }
 
 function publicStatsKey(eventHtml: string): string {
-  const key = eventHtml.match(
-    /["']X-Api-Key["']\s*:\s*["']([^"']+)["']/i
-  )?.[1]
+  const key = eventHtml.match(/["']X-Api-Key["']\s*:\s*["']([^"']+)["']/i)?.[1]
   if (!key) {
     throw new Error("TeamLinkt public event statistics marker is unavailable")
   }
@@ -729,7 +739,8 @@ function validatePublishedRecord(
 
 export async function buildTeamLinktSnapshot(
   config: TeamLinktTeamConfig,
-  checkedAt: string
+  checkedAt: string,
+  previousSnapshot: TeamSnapshot | null = null
 ): Promise<BuildResult> {
   const associationId = config.source.associationId
   const teamId = config.source.teamId
@@ -756,9 +767,15 @@ export async function buildTeamLinktSnapshot(
   const events = parseTeamLinktEvents(scheduleResponse, associationId)
   const standings = deriveTeamLinktStandings(events)
   validatePublishedRecord(homeResponse, standings, teamId)
-  let games = selectTeamLinktGames(events, teamId, checkedAt)
+  let games = selectTeamLinktGames(
+    events,
+    teamId,
+    checkedAt,
+    config.youtube.channelUrl
+  )
   const videoResolution = await resolveGameVideos({
     games,
+    previousGames: previousSnapshot?.games,
     channelUrl: config.youtube.channelUrl,
     teamAliases: config.youtube.teamAliases,
   })
@@ -796,8 +813,7 @@ export async function buildTeamLinktSnapshot(
     .map(({ event, payload }) => parseStatsBoxScore(event, payload))
     .filter((score): score is GameBoxScore => score !== null)
   const selectedBoxScores = leagueBoxScores.filter(
-    (score) =>
-      score.home.teamId === teamId || score.away.teamId === teamId
+    (score) => score.home.teamId === teamId || score.away.teamId === teamId
   )
   const roster = aggregatePlayers({
     boxScores: selectedBoxScores,
@@ -823,7 +839,9 @@ export async function buildTeamLinktSnapshot(
       label: "team-home",
       url: teamHomeUrl,
       checkedAt,
-      hash: sha256(stableStringify(standings.find((row) => row.teamId === teamId))),
+      hash: sha256(
+        stableStringify(standings.find((row) => row.teamId === teamId))
+      ),
     },
     {
       label: "roster",
@@ -837,16 +855,23 @@ export async function buildTeamLinktSnapshot(
       checkedAt,
       hash: sha256(stableStringify(events)),
     },
-    {
-      label: "youtube-channel",
-      url: config.youtube.channelUrl,
-      checkedAt,
-      hash: sha256(videoResolution.channelHtml),
-    },
+    ...(videoResolution.channelHtml !== null
+      ? [
+          {
+            label: "youtube-channel",
+            url: config.youtube.channelUrl,
+            checkedAt,
+            hash: sha256(videoResolution.channelHtml),
+          },
+        ]
+      : (previousSnapshot?.sources.filter(
+          (source) =>
+            source.label === "youtube-channel" &&
+            source.url === config.youtube.channelUrl
+        ) ?? [])),
     ...events
       .filter(
-        (event) =>
-          event.homeTeamId === teamId || event.awayTeamId === teamId
+        (event) => event.homeTeamId === teamId || event.awayTeamId === teamId
       )
       .map((event) => ({
         label: `game-${event.id}`,
@@ -869,10 +894,8 @@ export async function buildTeamLinktSnapshot(
     leaguePlayers,
     boxScores: selectedBoxScores,
   }
-  const contentHash = sha256(stableStringify(core))
-  const snapshot = assembleSnapshot({
+  const candidate = assembleSnapshot({
     generatedAt: checkedAt,
-    contentHash,
     ...core,
     sources,
     identity: {
@@ -896,6 +919,10 @@ export async function buildTeamLinktSnapshot(
     },
     sourceTeamName: config.sourceTeamName,
   })
+  const snapshot: TeamSnapshot = {
+    ...candidate,
+    contentHash: sha256(canonicalSnapshotContentV1(candidate)),
+  }
   return {
     snapshot,
     sourceCount: sources.length,
