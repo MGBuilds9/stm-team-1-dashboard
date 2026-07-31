@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "generatedAt": "2026-07-31T04:25:36.095Z",
-  "contentHash": "93fc06659e729a8ca7669c89dbd5ce1ef31cc6578c78016999fec63100c07f80",
+  "contentHash": "66ac2b8556b6468669882022844e511b47889e2b613ab21754e78441f06646ec",
   "identity": {
     "provider": "stm",
     "leagueId": "mens-basketball",
@@ -158,134 +158,6 @@
       "fgPct": 0,
       "threePct": 0,
       "ftPct": 0
-    }
-  ],
-  "games": [
-    {
-      "id": "ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
-      "date": "2026-06-24",
-      "scheduledAt": "2026-06-24T20:00:00",
-      "displayTime": "20:00",
-      "state": "final",
-      "opponentId": "482864b5-9443-4ad7-a4ff-4cb623d3dba0",
-      "opponentName": "Team 2",
-      "venue": null,
-      "isHome": false,
-      "teamScore": 65,
-      "opponentScore": 74,
-      "result": "L",
-      "officialUrl": "https://stmsports.ca/mens-basketball/game/ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
-      "hasBoxScore": true,
-      "videoUrl": "https://www.youtube.com/watch?v=6mEdC0PTWgA",
-      "videoTitle": "STM Summer 2026: Team 1 vs Team 2 - June 24, 2026"
-    },
-    {
-      "id": "46b0e5fc-5da5-44fb-bace-c3ad61c38c90",
-      "date": "2026-07-01",
-      "scheduledAt": "2026-07-01T20:00:00",
-      "displayTime": "20:00",
-      "state": "forfeit",
-      "opponentId": "2d6e9496-b8bc-4e0a-bd18-e4fc56e3cf66",
-      "opponentName": "Team 6",
-      "venue": null,
-      "isHome": false,
-      "teamScore": 0,
-      "opponentScore": 10,
-      "result": "L",
-      "officialUrl": "https://stmsports.ca/mens-basketball/game/46b0e5fc-5da5-44fb-bace-c3ad61c38c90",
-      "hasBoxScore": false,
-      "videoUrl": null,
-      "videoTitle": null
-    },
-    {
-      "id": "7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
-      "date": "2026-07-09",
-      "scheduledAt": "2026-07-09T21:30:00",
-      "displayTime": "21:30",
-      "state": "final",
-      "opponentId": "2be9972c-a81d-46fa-8073-0775732659e8",
-      "opponentName": "Team 5",
-      "venue": null,
-      "isHome": true,
-      "teamScore": 82,
-      "opponentScore": 42,
-      "result": "W",
-      "officialUrl": "https://stmsports.ca/mens-basketball/game/7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
-      "hasBoxScore": true,
-      "videoUrl": "https://www.youtube.com/watch?v=bmWpYMKVNEI",
-      "videoTitle": "STM Summer 2026: Team 1 vs Team 5 - July 9, 2026"
-    },
-    {
-      "id": "90ab0f6d-44c3-4436-b974-1b31619809a6",
-      "date": "2026-07-16",
-      "scheduledAt": "2026-07-16T20:00:00",
-      "displayTime": "20:00",
-      "state": "final",
-      "opponentId": "e34d4c6b-8819-41a3-b71e-4f2d412bdd69",
-      "opponentName": "Team 4",
-      "venue": null,
-      "isHome": false,
-      "teamScore": 89,
-      "opponentScore": 71,
-      "result": "W",
-      "officialUrl": "https://stmsports.ca/mens-basketball/game/90ab0f6d-44c3-4436-b974-1b31619809a6",
-      "hasBoxScore": true,
-      "videoUrl": null,
-      "videoTitle": null
-    },
-    {
-      "id": "745149a8-f5af-4f58-95e2-bf627da96d07",
-      "date": "2026-07-23",
-      "scheduledAt": "2026-07-23T21:30:00",
-      "displayTime": "21:30",
-      "state": "final",
-      "opponentId": "5099f573-3abc-47df-b600-8bf664488ecf",
-      "opponentName": "Team 3",
-      "venue": null,
-      "isHome": true,
-      "teamScore": 67,
-      "opponentScore": 76,
-      "result": "L",
-      "officialUrl": "https://stmsports.ca/mens-basketball/game/745149a8-f5af-4f58-95e2-bf627da96d07",
-      "hasBoxScore": true,
-      "videoUrl": null,
-      "videoTitle": null
-    },
-    {
-      "id": "318877d4-c504-450b-af66-e66c3f811a82",
-      "date": "2026-07-29",
-      "scheduledAt": "2026-07-29T20:00:00",
-      "displayTime": "20:00",
-      "state": "final",
-      "opponentId": "482864b5-9443-4ad7-a4ff-4cb623d3dba0",
-      "opponentName": "Team 2",
-      "venue": null,
-      "isHome": false,
-      "teamScore": 103,
-      "opponentScore": 50,
-      "result": "W",
-      "officialUrl": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
-      "hasBoxScore": true,
-      "videoUrl": null,
-      "videoTitle": null
-    },
-    {
-      "id": "c422bcdc-32ac-42f1-b8e3-b8ce49fd8b05",
-      "date": "2026-08-06",
-      "scheduledAt": "2026-08-06T20:00:00",
-      "displayTime": "20:00",
-      "state": "scheduled",
-      "opponentId": "2d6e9496-b8bc-4e0a-bd18-e4fc56e3cf66",
-      "opponentName": "Team 6",
-      "venue": null,
-      "isHome": false,
-      "teamScore": null,
-      "opponentScore": null,
-      "result": null,
-      "officialUrl": "https://stmsports.ca/mens-basketball/game/c422bcdc-32ac-42f1-b8e3-b8ce49fd8b05",
-      "hasBoxScore": false,
-      "videoUrl": null,
-      "videoTitle": null
     }
   ],
   "standings": [
@@ -484,6 +356,9 @@
         "score": 74,
         "players": [
           {
+            "playerId": "peter-gouda-0",
+            "playerName": "Peter Gouda",
+            "jersey": 0,
             "points": 24,
             "rebounds": 24,
             "assists": 7,
@@ -505,12 +380,12 @@
               "made": 6,
               "attempted": 8,
               "percentage": 75
-            },
-            "playerId": "peter-gouda-0",
-            "playerName": "Peter Gouda",
-            "jersey": 0
+            }
           },
           {
+            "playerId": "youssef-abdel-malek-4",
+            "playerName": "Youssef Abdel Malek",
+            "jersey": 4,
             "points": 15,
             "rebounds": 5,
             "assists": 9,
@@ -532,12 +407,12 @@
               "made": 1,
               "attempted": 1,
               "percentage": 100
-            },
-            "playerId": "youssef-abdel-malek-4",
-            "playerName": "Youssef Abdel Malek",
-            "jersey": 4
+            }
           },
           {
+            "playerId": "morcos-fahmy-23",
+            "playerName": "Morcos Fahmy",
+            "jersey": 23,
             "points": 14,
             "rebounds": 8,
             "assists": 6,
@@ -559,12 +434,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "morcos-fahmy-23",
-            "playerName": "Morcos Fahmy",
-            "jersey": 23
+            }
           },
           {
+            "playerId": "markmeena-makcemus-21",
+            "playerName": "Markmeena Makcemus",
+            "jersey": 21,
             "points": 12,
             "rebounds": 6,
             "assists": 5,
@@ -586,12 +461,12 @@
               "made": 1,
               "attempted": 4,
               "percentage": 25
-            },
-            "playerId": "markmeena-makcemus-21",
-            "playerName": "Markmeena Makcemus",
-            "jersey": 21
+            }
           },
           {
+            "playerId": "andrew-guindy-15",
+            "playerName": "Andrew Guindy",
+            "jersey": 15,
             "points": 7,
             "rebounds": 7,
             "assists": 6,
@@ -613,12 +488,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "andrew-guindy-15",
-            "playerName": "Andrew Guindy",
-            "jersey": 15
+            }
           },
           {
+            "playerId": "fady-nakhla-22",
+            "playerName": "Fady Nakhla",
+            "jersey": 22,
             "points": 2,
             "rebounds": 0,
             "assists": 3,
@@ -640,12 +515,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "fady-nakhla-22",
-            "playerName": "Fady Nakhla",
-            "jersey": 22
+            }
           },
           {
+            "playerId": "kiro-mikhail-17",
+            "playerName": "Kiro Mikhail",
+            "jersey": 17,
             "points": 0,
             "rebounds": 5,
             "assists": 4,
@@ -667,12 +542,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "kiro-mikhail-17",
-            "playerName": "Kiro Mikhail",
-            "jersey": 17
+            }
           },
           {
+            "playerId": "mahir-khalil-28",
+            "playerName": "Mahir Khalil",
+            "jersey": 28,
             "points": 0,
             "rebounds": 4,
             "assists": 1,
@@ -694,10 +569,7 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "mahir-khalil-28",
-            "playerName": "Mahir Khalil",
-            "jersey": 28
+            }
           }
         ],
         "totals": {
@@ -731,6 +603,9 @@
         "score": 65,
         "players": [
           {
+            "playerId": "ramy-bishay-20",
+            "playerName": "Ramy Bishay",
+            "jersey": 20,
             "points": 15,
             "rebounds": 17,
             "assists": 2,
@@ -752,12 +627,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "ramy-bishay-20",
-            "playerName": "Ramy Bishay",
-            "jersey": 20
+            }
           },
           {
+            "playerId": "david-elsabawy-8",
+            "playerName": "David Elsabawy",
+            "jersey": 8,
             "points": 14,
             "rebounds": 3,
             "assists": 2,
@@ -779,12 +654,12 @@
               "made": 2,
               "attempted": 2,
               "percentage": 100
-            },
-            "playerId": "david-elsabawy-8",
-            "playerName": "David Elsabawy",
-            "jersey": 8
+            }
           },
           {
+            "playerId": "alfred-bishay-3",
+            "playerName": "Alfred Bishay",
+            "jersey": 3,
             "points": 13,
             "rebounds": 4,
             "assists": 6,
@@ -806,12 +681,12 @@
               "made": 2,
               "attempted": 2,
               "percentage": 100
-            },
-            "playerId": "alfred-bishay-3",
-            "playerName": "Alfred Bishay",
-            "jersey": 3
+            }
           },
           {
+            "playerId": "michael-guirguis-10",
+            "playerName": "Michael Guirguis",
+            "jersey": 10,
             "points": 12,
             "rebounds": 2,
             "assists": 5,
@@ -833,12 +708,12 @@
               "made": 2,
               "attempted": 2,
               "percentage": 100
-            },
-            "playerId": "michael-guirguis-10",
-            "playerName": "Michael Guirguis",
-            "jersey": 10
+            }
           },
           {
+            "playerId": "kiro-bassilious-3",
+            "playerName": "Kiro Bassilious",
+            "jersey": 3,
             "points": 8,
             "rebounds": 1,
             "assists": 0,
@@ -860,12 +735,12 @@
               "made": 3,
               "attempted": 4,
               "percentage": 75
-            },
-            "playerId": "kiro-bassilious-3",
-            "playerName": "Kiro Bassilious",
-            "jersey": 3
+            }
           },
           {
+            "playerId": "kero-naguib-29",
+            "playerName": "Kero Naguib",
+            "jersey": 29,
             "points": 3,
             "rebounds": 1,
             "assists": 0,
@@ -887,12 +762,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "kero-naguib-29",
-            "playerName": "Kero Naguib",
-            "jersey": 29
+            }
           },
           {
+            "playerId": "karim-malek-5",
+            "playerName": "Karim Malek",
+            "jersey": 5,
             "points": 0,
             "rebounds": 1,
             "assists": 0,
@@ -914,10 +789,7 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "karim-malek-5",
-            "playerName": "Karim Malek",
-            "jersey": 5
+            }
           }
         ],
         "totals": {
@@ -956,6 +828,9 @@
         "score": 82,
         "players": [
           {
+            "playerId": "alfred-bishay-3",
+            "playerName": "Alfred Bishay",
+            "jersey": 3,
             "points": 23,
             "rebounds": 9,
             "assists": 5,
@@ -977,12 +852,12 @@
               "made": 5,
               "attempted": 7,
               "percentage": 71.4
-            },
-            "playerId": "alfred-bishay-3",
-            "playerName": "Alfred Bishay",
-            "jersey": 3
+            }
           },
           {
+            "playerId": "michael-guirguis-10",
+            "playerName": "Michael Guirguis",
+            "jersey": 10,
             "points": 13,
             "rebounds": 15,
             "assists": 7,
@@ -1004,12 +879,12 @@
               "made": 1,
               "attempted": 3,
               "percentage": 33.3
-            },
-            "playerId": "michael-guirguis-10",
-            "playerName": "Michael Guirguis",
-            "jersey": 10
+            }
           },
           {
+            "playerId": "shady-bishay-5",
+            "playerName": "Shady Bishay",
+            "jersey": 5,
             "points": 12,
             "rebounds": 8,
             "assists": 5,
@@ -1031,12 +906,12 @@
               "made": 1,
               "attempted": 1,
               "percentage": 100
-            },
-            "playerId": "shady-bishay-5",
-            "playerName": "Shady Bishay",
-            "jersey": 5
+            }
           },
           {
+            "playerId": "ramy-bishay-20",
+            "playerName": "Ramy Bishay",
+            "jersey": 20,
             "points": 12,
             "rebounds": 23,
             "assists": 3,
@@ -1058,12 +933,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "ramy-bishay-20",
-            "playerName": "Ramy Bishay",
-            "jersey": 20
+            }
           },
           {
+            "playerId": "kero-naguib-29",
+            "playerName": "Kero Naguib",
+            "jersey": 29,
             "points": 10,
             "rebounds": 3,
             "assists": 1,
@@ -1085,12 +960,12 @@
               "made": 1,
               "attempted": 3,
               "percentage": 33.3
-            },
-            "playerId": "kero-naguib-29",
-            "playerName": "Kero Naguib",
-            "jersey": 29
+            }
           },
           {
+            "playerId": "fkfady-kryacos-2",
+            "playerName": "FKfady kryacos",
+            "jersey": 2,
             "points": 9,
             "rebounds": 8,
             "assists": 4,
@@ -1112,12 +987,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "fkfady-kryacos-2",
-            "playerName": "FKfady kryacos",
-            "jersey": 2
+            }
           },
           {
+            "playerId": "karim-malek-5",
+            "playerName": "Karim Malek",
+            "jersey": 5,
             "points": 3,
             "rebounds": 2,
             "assists": 2,
@@ -1139,10 +1014,7 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "karim-malek-5",
-            "playerName": "Karim Malek",
-            "jersey": 5
+            }
           }
         ],
         "totals": {
@@ -1176,6 +1048,9 @@
         "score": 42,
         "players": [
           {
+            "playerId": "kevin-yacoub-0",
+            "playerName": "Kevin Yacoub",
+            "jersey": 0,
             "points": 20,
             "rebounds": 4,
             "assists": 2,
@@ -1197,12 +1072,12 @@
               "made": 2,
               "attempted": 3,
               "percentage": 66.7
-            },
-            "playerId": "kevin-yacoub-0",
-            "playerName": "Kevin Yacoub",
-            "jersey": 0
+            }
           },
           {
+            "playerId": "patrick-marzouk-17",
+            "playerName": "Patrick Marzouk",
+            "jersey": 17,
             "points": 9,
             "rebounds": 5,
             "assists": 3,
@@ -1224,12 +1099,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "patrick-marzouk-17",
-            "playerName": "Patrick Marzouk",
-            "jersey": 17
+            }
           },
           {
+            "playerId": "jbjohn-bastawrous-na",
+            "playerName": "JBJohn Bastawrous",
+            "jersey": null,
             "points": 6,
             "rebounds": 5,
             "assists": 3,
@@ -1251,12 +1126,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "jbjohn-bastawrous-na",
-            "playerName": "JBJohn Bastawrous",
-            "jersey": null
+            }
           },
           {
+            "playerId": "daniel-tawfilis-22",
+            "playerName": "Daniel Tawfilis",
+            "jersey": 22,
             "points": 3,
             "rebounds": 7,
             "assists": 3,
@@ -1278,12 +1153,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "daniel-tawfilis-22",
-            "playerName": "Daniel Tawfilis",
-            "jersey": 22
+            }
           },
           {
+            "playerId": "mmmina-morcos-10",
+            "playerName": "MMMina Morcos",
+            "jersey": 10,
             "points": 2,
             "rebounds": 2,
             "assists": 0,
@@ -1305,12 +1180,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "mmmina-morcos-10",
-            "playerName": "MMMina Morcos",
-            "jersey": 10
+            }
           },
           {
+            "playerId": "mmmichael-morcos-13",
+            "playerName": "MMMichael Morcos",
+            "jersey": 13,
             "points": 2,
             "rebounds": 3,
             "assists": 2,
@@ -1332,10 +1207,7 @@
               "made": 0,
               "attempted": 4,
               "percentage": 0
-            },
-            "playerId": "mmmichael-morcos-13",
-            "playerName": "MMMichael Morcos",
-            "jersey": 13
+            }
           }
         ],
         "totals": {
@@ -1374,6 +1246,9 @@
         "score": 71,
         "players": [
           {
+            "playerId": "mario-tanuous-4",
+            "playerName": "Mario Tanuous",
+            "jersey": 4,
             "points": 17,
             "rebounds": 5,
             "assists": 1,
@@ -1395,12 +1270,12 @@
               "made": 2,
               "attempted": 4,
               "percentage": 50
-            },
-            "playerId": "mario-tanuous-4",
-            "playerName": "Mario Tanuous",
-            "jersey": 4
+            }
           },
           {
+            "playerId": "steven-melek-40",
+            "playerName": "Steven Melek",
+            "jersey": 40,
             "points": 15,
             "rebounds": 3,
             "assists": 3,
@@ -1422,12 +1297,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "steven-melek-40",
-            "playerName": "Steven Melek",
-            "jersey": 40
+            }
           },
           {
+            "playerId": "george-gerges-22",
+            "playerName": "George Gerges",
+            "jersey": 22,
             "points": 15,
             "rebounds": 13,
             "assists": 5,
@@ -1449,12 +1324,12 @@
               "made": 1,
               "attempted": 3,
               "percentage": 33.3
-            },
-            "playerId": "george-gerges-22",
-            "playerName": "George Gerges",
-            "jersey": 22
+            }
           },
           {
+            "playerId": "antonio-younan-30",
+            "playerName": "Antonio Younan",
+            "jersey": 30,
             "points": 10,
             "rebounds": 7,
             "assists": 1,
@@ -1476,12 +1351,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "antonio-younan-30",
-            "playerName": "Antonio Younan",
-            "jersey": 30
+            }
           },
           {
+            "playerId": "youssef-rofail-14",
+            "playerName": "Youssef Rofail",
+            "jersey": 14,
             "points": 8,
             "rebounds": 6,
             "assists": 6,
@@ -1503,12 +1378,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "youssef-rofail-14",
-            "playerName": "Youssef Rofail",
-            "jersey": 14
+            }
           },
           {
+            "playerId": "karim-henry-4",
+            "playerName": "Karim Henry",
+            "jersey": 4,
             "points": 4,
             "rebounds": 11,
             "assists": 2,
@@ -1530,12 +1405,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "karim-henry-4",
-            "playerName": "Karim Henry",
-            "jersey": 4
+            }
           },
           {
+            "playerId": "pier-youssef-13",
+            "playerName": "Pier Youssef",
+            "jersey": 13,
             "points": 2,
             "rebounds": 2,
             "assists": 5,
@@ -1557,12 +1432,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "pier-youssef-13",
-            "playerName": "Pier Youssef",
-            "jersey": 13
+            }
           },
           {
+            "playerId": "nabil-ghobrial-55",
+            "playerName": "Nabil Ghobrial",
+            "jersey": 55,
             "points": 0,
             "rebounds": 4,
             "assists": 0,
@@ -1584,10 +1459,7 @@
               "made": 0,
               "attempted": 2,
               "percentage": 0
-            },
-            "playerId": "nabil-ghobrial-55",
-            "playerName": "Nabil Ghobrial",
-            "jersey": 55
+            }
           }
         ],
         "totals": {
@@ -1621,6 +1493,9 @@
         "score": 89,
         "players": [
           {
+            "playerId": "shady-bishay-5",
+            "playerName": "Shady Bishay",
+            "jersey": 5,
             "points": 25,
             "rebounds": 9,
             "assists": 3,
@@ -1642,12 +1517,12 @@
               "made": 1,
               "attempted": 1,
               "percentage": 100
-            },
-            "playerId": "shady-bishay-5",
-            "playerName": "Shady Bishay",
-            "jersey": 5
+            }
           },
           {
+            "playerId": "david-elsabawy-8",
+            "playerName": "David Elsabawy",
+            "jersey": 8,
             "points": 19,
             "rebounds": 7,
             "assists": 4,
@@ -1669,12 +1544,12 @@
               "made": 3,
               "attempted": 3,
               "percentage": 100
-            },
-            "playerId": "david-elsabawy-8",
-            "playerName": "David Elsabawy",
-            "jersey": 8
+            }
           },
           {
+            "playerId": "ramy-bishay-20",
+            "playerName": "Ramy Bishay",
+            "jersey": 20,
             "points": 14,
             "rebounds": 13,
             "assists": 2,
@@ -1696,12 +1571,12 @@
               "made": 6,
               "attempted": 7,
               "percentage": 85.7
-            },
-            "playerId": "ramy-bishay-20",
-            "playerName": "Ramy Bishay",
-            "jersey": 20
+            }
           },
           {
+            "playerId": "alfred-bishay-3",
+            "playerName": "Alfred Bishay",
+            "jersey": 3,
             "points": 13,
             "rebounds": 6,
             "assists": 4,
@@ -1723,12 +1598,12 @@
               "made": 1,
               "attempted": 1,
               "percentage": 100
-            },
-            "playerId": "alfred-bishay-3",
-            "playerName": "Alfred Bishay",
-            "jersey": 3
+            }
           },
           {
+            "playerId": "michael-guirguis-10",
+            "playerName": "Michael Guirguis",
+            "jersey": 10,
             "points": 12,
             "rebounds": 13,
             "assists": 6,
@@ -1750,12 +1625,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "michael-guirguis-10",
-            "playerName": "Michael Guirguis",
-            "jersey": 10
+            }
           },
           {
+            "playerId": "karim-malek-5",
+            "playerName": "Karim Malek",
+            "jersey": 5,
             "points": 6,
             "rebounds": 2,
             "assists": 0,
@@ -1777,12 +1652,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "karim-malek-5",
-            "playerName": "Karim Malek",
-            "jersey": 5
+            }
           },
           {
+            "playerId": "kero-naguib-29",
+            "playerName": "Kero Naguib",
+            "jersey": 29,
             "points": 0,
             "rebounds": 7,
             "assists": 2,
@@ -1804,12 +1679,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "kero-naguib-29",
-            "playerName": "Kero Naguib",
-            "jersey": 29
+            }
           },
           {
+            "playerId": "kiro-bassilious-3",
+            "playerName": "Kiro Bassilious",
+            "jersey": 3,
             "points": 0,
             "rebounds": 4,
             "assists": 3,
@@ -1831,12 +1706,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "kiro-bassilious-3",
-            "playerName": "Kiro Bassilious",
-            "jersey": 3
+            }
           },
           {
+            "playerId": "jkjoe-keliny-na",
+            "playerName": "JKJoe Keliny",
+            "jersey": null,
             "points": 0,
             "rebounds": 2,
             "assists": 0,
@@ -1858,10 +1733,7 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "jkjoe-keliny-na",
-            "playerName": "JKJoe Keliny",
-            "jersey": null
+            }
           }
         ],
         "totals": {
@@ -1900,6 +1772,9 @@
         "score": 67,
         "players": [
           {
+            "playerId": "shady-bishay-5",
+            "playerName": "Shady Bishay",
+            "jersey": 5,
             "points": 28,
             "rebounds": 10,
             "assists": 5,
@@ -1921,12 +1796,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "shady-bishay-5",
-            "playerName": "Shady Bishay",
-            "jersey": 5
+            }
           },
           {
+            "playerId": "alfred-bishay-3",
+            "playerName": "Alfred Bishay",
+            "jersey": 3,
             "points": 14,
             "rebounds": 7,
             "assists": 0,
@@ -1948,12 +1823,12 @@
               "made": 2,
               "attempted": 2,
               "percentage": 100
-            },
-            "playerId": "alfred-bishay-3",
-            "playerName": "Alfred Bishay",
-            "jersey": 3
+            }
           },
           {
+            "playerId": "ramy-bishay-20",
+            "playerName": "Ramy Bishay",
+            "jersey": 20,
             "points": 13,
             "rebounds": 14,
             "assists": 0,
@@ -1975,12 +1850,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "ramy-bishay-20",
-            "playerName": "Ramy Bishay",
-            "jersey": 20
+            }
           },
           {
+            "playerId": "david-elsabawy-8",
+            "playerName": "David Elsabawy",
+            "jersey": 8,
             "points": 6,
             "rebounds": 1,
             "assists": 3,
@@ -2002,12 +1877,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "david-elsabawy-8",
-            "playerName": "David Elsabawy",
-            "jersey": 8
+            }
           },
           {
+            "playerId": "kero-naguib-29",
+            "playerName": "Kero Naguib",
+            "jersey": 29,
             "points": 3,
             "rebounds": 8,
             "assists": 1,
@@ -2029,12 +1904,12 @@
               "made": 0,
               "attempted": 2,
               "percentage": 0
-            },
-            "playerId": "kero-naguib-29",
-            "playerName": "Kero Naguib",
-            "jersey": 29
+            }
           },
           {
+            "playerId": "karim-malek-5",
+            "playerName": "Karim Malek",
+            "jersey": 5,
             "points": 3,
             "rebounds": 0,
             "assists": 2,
@@ -2056,10 +1931,7 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "karim-malek-5",
-            "playerName": "Karim Malek",
-            "jersey": 5
+            }
           }
         ],
         "totals": {
@@ -2093,6 +1965,9 @@
         "score": 76,
         "players": [
           {
+            "playerId": "david-guirguis-32",
+            "playerName": "David Guirguis",
+            "jersey": 32,
             "points": 24,
             "rebounds": 18,
             "assists": 2,
@@ -2114,12 +1989,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "david-guirguis-32",
-            "playerName": "David Guirguis",
-            "jersey": 32
+            }
           },
           {
+            "playerId": "john-youssef-8",
+            "playerName": "John Youssef",
+            "jersey": 8,
             "points": 20,
             "rebounds": 4,
             "assists": 4,
@@ -2141,12 +2016,12 @@
               "made": 2,
               "attempted": 4,
               "percentage": 50
-            },
-            "playerId": "john-youssef-8",
-            "playerName": "John Youssef",
-            "jersey": 8
+            }
           },
           {
+            "playerId": "gabriel-takla-23",
+            "playerName": "Gabriel Takla",
+            "jersey": 23,
             "points": 9,
             "rebounds": 4,
             "assists": 0,
@@ -2168,12 +2043,12 @@
               "made": 1,
               "attempted": 1,
               "percentage": 100
-            },
-            "playerId": "gabriel-takla-23",
-            "playerName": "Gabriel Takla",
-            "jersey": 23
+            }
           },
           {
+            "playerId": "george-yacoub-2",
+            "playerName": "George Yacoub",
+            "jersey": 2,
             "points": 8,
             "rebounds": 2,
             "assists": 2,
@@ -2195,12 +2070,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "george-yacoub-2",
-            "playerName": "George Yacoub",
-            "jersey": 2
+            }
           },
           {
+            "playerId": "michel-gerges-22",
+            "playerName": "Michel Gerges",
+            "jersey": 22,
             "points": 7,
             "rebounds": 25,
             "assists": 8,
@@ -2222,12 +2097,12 @@
               "made": 5,
               "attempted": 6,
               "percentage": 83.3
-            },
-            "playerId": "michel-gerges-22",
-            "playerName": "Michel Gerges",
-            "jersey": 22
+            }
           },
           {
+            "playerId": "shaheer-tadros-33",
+            "playerName": "Shaheer Tadros",
+            "jersey": 33,
             "points": 4,
             "rebounds": 4,
             "assists": 0,
@@ -2249,12 +2124,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "shaheer-tadros-33",
-            "playerName": "Shaheer Tadros",
-            "jersey": 33
+            }
           },
           {
+            "playerId": "glen-henry-10",
+            "playerName": "Glen Henry",
+            "jersey": 10,
             "points": 2,
             "rebounds": 1,
             "assists": 0,
@@ -2276,12 +2151,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "glen-henry-10",
-            "playerName": "Glen Henry",
-            "jersey": 10
+            }
           },
           {
+            "playerId": "george-soliman-24",
+            "playerName": "George Soliman",
+            "jersey": 24,
             "points": 2,
             "rebounds": 6,
             "assists": 1,
@@ -2303,10 +2178,7 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "george-soliman-24",
-            "playerName": "George Soliman",
-            "jersey": 24
+            }
           }
         ],
         "totals": {
@@ -2345,6 +2217,9 @@
         "score": 50,
         "players": [
           {
+            "playerId": "peter-gouda-0",
+            "playerName": "Peter Gouda",
+            "jersey": 0,
             "points": 23,
             "rebounds": 13,
             "assists": 3,
@@ -2366,12 +2241,12 @@
               "made": 1,
               "attempted": 4,
               "percentage": 25
-            },
-            "playerId": "peter-gouda-0",
-            "playerName": "Peter Gouda",
-            "jersey": 0
+            }
           },
           {
+            "playerId": "andrew-guindy-15",
+            "playerName": "Andrew Guindy",
+            "jersey": 15,
             "points": 13,
             "rebounds": 4,
             "assists": 0,
@@ -2393,12 +2268,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "andrew-guindy-15",
-            "playerName": "Andrew Guindy",
-            "jersey": 15
+            }
           },
           {
+            "playerId": "morcos-fahmy-23",
+            "playerName": "Morcos Fahmy",
+            "jersey": 23,
             "points": 9,
             "rebounds": 6,
             "assists": 2,
@@ -2420,12 +2295,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "morcos-fahmy-23",
-            "playerName": "Morcos Fahmy",
-            "jersey": 23
+            }
           },
           {
+            "playerId": "kiro-mikhail-17",
+            "playerName": "Kiro Mikhail",
+            "jersey": 17,
             "points": 5,
             "rebounds": 2,
             "assists": 0,
@@ -2447,12 +2322,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "kiro-mikhail-17",
-            "playerName": "Kiro Mikhail",
-            "jersey": 17
+            }
           },
           {
+            "playerId": "rcr-c-0",
+            "playerName": "RCr c",
+            "jersey": 0,
             "points": 0,
             "rebounds": 3,
             "assists": 0,
@@ -2474,12 +2349,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "rcr-c-0",
-            "playerName": "RCr c",
-            "jersey": 0
+            }
           },
           {
+            "playerId": "aya-y-0",
+            "playerName": "AYa y",
+            "jersey": 0,
             "points": 0,
             "rebounds": 2,
             "assists": 1,
@@ -2501,12 +2376,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "aya-y-0",
-            "playerName": "AYa y",
-            "jersey": 0
+            }
           },
           {
+            "playerId": "fady-nakhla-22",
+            "playerName": "Fady Nakhla",
+            "jersey": 22,
             "points": 0,
             "rebounds": 0,
             "assists": 0,
@@ -2528,10 +2403,7 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "fady-nakhla-22",
-            "playerName": "Fady Nakhla",
-            "jersey": 22
+            }
           }
         ],
         "totals": {
@@ -2565,6 +2437,9 @@
         "score": 103,
         "players": [
           {
+            "playerId": "alfred-bishay-3",
+            "playerName": "Alfred Bishay",
+            "jersey": 3,
             "points": 21,
             "rebounds": 6,
             "assists": 3,
@@ -2586,12 +2461,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "alfred-bishay-3",
-            "playerName": "Alfred Bishay",
-            "jersey": 3
+            }
           },
           {
+            "playerId": "shady-bishay-5",
+            "playerName": "Shady Bishay",
+            "jersey": 5,
             "points": 21,
             "rebounds": 5,
             "assists": 4,
@@ -2613,12 +2488,12 @@
               "made": 1,
               "attempted": 1,
               "percentage": 100
-            },
-            "playerId": "shady-bishay-5",
-            "playerName": "Shady Bishay",
-            "jersey": 5
+            }
           },
           {
+            "playerId": "kiro-bassilious-3",
+            "playerName": "Kiro Bassilious",
+            "jersey": 3,
             "points": 18,
             "rebounds": 1,
             "assists": 1,
@@ -2640,12 +2515,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "kiro-bassilious-3",
-            "playerName": "Kiro Bassilious",
-            "jersey": 3
+            }
           },
           {
+            "playerId": "michael-guirguis-10",
+            "playerName": "Michael Guirguis",
+            "jersey": 10,
             "points": 14,
             "rebounds": 4,
             "assists": 4,
@@ -2667,12 +2542,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "michael-guirguis-10",
-            "playerName": "Michael Guirguis",
-            "jersey": 10
+            }
           },
           {
+            "playerId": "ramy-bishay-20",
+            "playerName": "Ramy Bishay",
+            "jersey": 20,
             "points": 13,
             "rebounds": 1,
             "assists": 4,
@@ -2694,12 +2569,12 @@
               "made": 1,
               "attempted": 2,
               "percentage": 50
-            },
-            "playerId": "ramy-bishay-20",
-            "playerName": "Ramy Bishay",
-            "jersey": 20
+            }
           },
           {
+            "playerId": "david-elsabawy-8",
+            "playerName": "David Elsabawy",
+            "jersey": 8,
             "points": 11,
             "rebounds": 0,
             "assists": 2,
@@ -2721,12 +2596,12 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "david-elsabawy-8",
-            "playerName": "David Elsabawy",
-            "jersey": 8
+            }
           },
           {
+            "playerId": "karim-malek-5",
+            "playerName": "Karim Malek",
+            "jersey": 5,
             "points": 5,
             "rebounds": 1,
             "assists": 1,
@@ -2748,10 +2623,7 @@
               "made": 0,
               "attempted": 0,
               "percentage": null
-            },
-            "playerId": "karim-malek-5",
-            "playerName": "Karim Malek",
-            "jersey": 5
+            }
           }
         ],
         "totals": {
@@ -2841,6 +2713,159 @@
       "url": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
       "checkedAt": "2026-07-31T04:25:36.095Z",
       "hash": "d04f6ec916225c6c89abb542e479fd9bd44bb48a1a90faf110b1b82fe4fb02f6"
+    }
+  ],
+  "games": [
+    {
+      "id": "ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
+      "date": "2026-06-24",
+      "scheduledAt": "2026-06-24T20:00:00",
+      "displayTime": "20:00",
+      "state": "final",
+      "opponentId": "482864b5-9443-4ad7-a4ff-4cb623d3dba0",
+      "opponentName": "Team 2",
+      "venue": null,
+      "isHome": false,
+      "teamScore": 65,
+      "opponentScore": 74,
+      "result": "L",
+      "officialUrl": "https://stmsports.ca/mens-basketball/game/ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
+      "hasBoxScore": true,
+      "video": {
+        "state": "verified_exact",
+        "channelUrl": "https://www.youtube.com/@STMSports-t3z",
+        "videoUrl": "https://www.youtube.com/watch?v=6mEdC0PTWgA",
+        "videoTitle": "STM Summer 2026: Team 1 vs Team 2 - June 24, 2026",
+        "matchedBy": "previously_verified"
+      }
+    },
+    {
+      "id": "46b0e5fc-5da5-44fb-bace-c3ad61c38c90",
+      "date": "2026-07-01",
+      "scheduledAt": "2026-07-01T20:00:00",
+      "displayTime": "20:00",
+      "state": "forfeit",
+      "opponentId": "2d6e9496-b8bc-4e0a-bd18-e4fc56e3cf66",
+      "opponentName": "Team 6",
+      "venue": null,
+      "isHome": false,
+      "teamScore": 0,
+      "opponentScore": 10,
+      "result": "L",
+      "officialUrl": "https://stmsports.ca/mens-basketball/game/46b0e5fc-5da5-44fb-bace-c3ad61c38c90",
+      "hasBoxScore": false,
+      "video": {
+        "state": "channel_only",
+        "channelUrl": "https://www.youtube.com/@STMSports-t3z",
+        "reason": "not_found"
+      }
+    },
+    {
+      "id": "7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
+      "date": "2026-07-09",
+      "scheduledAt": "2026-07-09T21:30:00",
+      "displayTime": "21:30",
+      "state": "final",
+      "opponentId": "2be9972c-a81d-46fa-8073-0775732659e8",
+      "opponentName": "Team 5",
+      "venue": null,
+      "isHome": true,
+      "teamScore": 82,
+      "opponentScore": 42,
+      "result": "W",
+      "officialUrl": "https://stmsports.ca/mens-basketball/game/7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
+      "hasBoxScore": true,
+      "video": {
+        "state": "verified_exact",
+        "channelUrl": "https://www.youtube.com/@STMSports-t3z",
+        "videoUrl": "https://www.youtube.com/watch?v=bmWpYMKVNEI",
+        "videoTitle": "STM Summer 2026: Team 1 vs Team 5 - July 9, 2026",
+        "matchedBy": "previously_verified"
+      }
+    },
+    {
+      "id": "90ab0f6d-44c3-4436-b974-1b31619809a6",
+      "date": "2026-07-16",
+      "scheduledAt": "2026-07-16T20:00:00",
+      "displayTime": "20:00",
+      "state": "final",
+      "opponentId": "e34d4c6b-8819-41a3-b71e-4f2d412bdd69",
+      "opponentName": "Team 4",
+      "venue": null,
+      "isHome": false,
+      "teamScore": 89,
+      "opponentScore": 71,
+      "result": "W",
+      "officialUrl": "https://stmsports.ca/mens-basketball/game/90ab0f6d-44c3-4436-b974-1b31619809a6",
+      "hasBoxScore": true,
+      "video": {
+        "state": "channel_only",
+        "channelUrl": "https://www.youtube.com/@STMSports-t3z",
+        "reason": "not_found"
+      }
+    },
+    {
+      "id": "745149a8-f5af-4f58-95e2-bf627da96d07",
+      "date": "2026-07-23",
+      "scheduledAt": "2026-07-23T21:30:00",
+      "displayTime": "21:30",
+      "state": "final",
+      "opponentId": "5099f573-3abc-47df-b600-8bf664488ecf",
+      "opponentName": "Team 3",
+      "venue": null,
+      "isHome": true,
+      "teamScore": 67,
+      "opponentScore": 76,
+      "result": "L",
+      "officialUrl": "https://stmsports.ca/mens-basketball/game/745149a8-f5af-4f58-95e2-bf627da96d07",
+      "hasBoxScore": true,
+      "video": {
+        "state": "channel_only",
+        "channelUrl": "https://www.youtube.com/@STMSports-t3z",
+        "reason": "not_found"
+      }
+    },
+    {
+      "id": "318877d4-c504-450b-af66-e66c3f811a82",
+      "date": "2026-07-29",
+      "scheduledAt": "2026-07-29T20:00:00",
+      "displayTime": "20:00",
+      "state": "final",
+      "opponentId": "482864b5-9443-4ad7-a4ff-4cb623d3dba0",
+      "opponentName": "Team 2",
+      "venue": null,
+      "isHome": false,
+      "teamScore": 103,
+      "opponentScore": 50,
+      "result": "W",
+      "officialUrl": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
+      "hasBoxScore": true,
+      "video": {
+        "state": "channel_only",
+        "channelUrl": "https://www.youtube.com/@STMSports-t3z",
+        "reason": "not_found"
+      }
+    },
+    {
+      "id": "c422bcdc-32ac-42f1-b8e3-b8ce49fd8b05",
+      "date": "2026-08-06",
+      "scheduledAt": "2026-08-06T20:00:00",
+      "displayTime": "20:00",
+      "state": "scheduled",
+      "opponentId": "2d6e9496-b8bc-4e0a-bd18-e4fc56e3cf66",
+      "opponentName": "Team 6",
+      "venue": null,
+      "isHome": false,
+      "teamScore": null,
+      "opponentScore": null,
+      "result": null,
+      "officialUrl": "https://stmsports.ca/mens-basketball/game/c422bcdc-32ac-42f1-b8e3-b8ce49fd8b05",
+      "hasBoxScore": false,
+      "video": {
+        "state": "channel_only",
+        "channelUrl": "https://www.youtube.com/@STMSports-t3z",
+        "reason": "not_found"
+      }
     }
   ]
 }
