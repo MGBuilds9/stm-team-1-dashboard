@@ -28,3 +28,4 @@ data/receipt.json
 *.njsproj
 *.sln
 *.sw?
+.gstack/
