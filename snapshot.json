@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-08-06T06:04:41.506Z",
-  "contentHash": "c6f245b88c33a87a3238f22abe3214eda82b50bfbd31544592536e6312d47691",
+  "generatedAt": "2026-08-07T00:44:32.911Z",
+  "contentHash": "7bfd43a6cd6faf5d22f65ee0c7d5765460d90495a6baa7cbadff603036ee6981",
   "identity": {
     "provider": "stm",
     "leagueId": "mens-basketball",
@@ -25,11 +25,11 @@
     "id": "0dce2102-2b06-4750-b25d-8cbdba23d2c5",
     "name": "Semi-Uncs",
     "season": "Summer 2026",
-    "wins": 3,
+    "wins": 4,
     "losses": 3,
-    "pointsFor": 406,
+    "pointsFor": 416,
     "pointsAgainst": 323,
-    "differential": 83,
+    "differential": 93,
     "standing": 3
   },
   "roster": [
@@ -191,14 +191,14 @@
       "rank": 3,
       "teamId": "0dce2102-2b06-4750-b25d-8cbdba23d2c5",
       "teamName": "Semi-Uncs",
-      "wins": 3,
+      "wins": 4,
       "losses": 3,
-      "gamesPlayed": 6,
-      "winPct": 0.5,
-      "pointsFor": 406,
+      "gamesPlayed": 7,
+      "winPct": 0.5710000000000001,
+      "pointsFor": 416,
       "pointsAgainst": 323,
-      "differential": 83,
-      "streak": "W1"
+      "differential": 93,
+      "streak": "W2"
     },
     {
       "rank": 4,
@@ -231,13 +231,13 @@
       "teamId": "stm-team-6",
       "teamName": "Team 6",
       "wins": 1,
-      "losses": 6,
-      "gamesPlayed": 7,
-      "winPct": 0.14300000000000002,
+      "losses": 7,
+      "gamesPlayed": 8,
+      "winPct": 0.125,
       "pointsFor": 313,
-      "pointsAgainst": 345,
-      "differential": -32,
-      "streak": "L4"
+      "pointsAgainst": 355,
+      "differential": -42,
+      "streak": "L5"
     }
   ],
   "teamLeaders": [
@@ -2657,62 +2657,62 @@
     {
       "label": "schedule",
       "url": "https://stmsports.ca/mens-basketball/schedule?view=all",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "46e343b9464db7228a3c3f36bd7d2794bf35844c830af08caadf3f4319f3e751"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "2e0cbad384c66e00fa17dd99e3b92f971e9a87f84d7797ad1ad20a56aef77bd8"
     },
     {
       "label": "standings",
       "url": "https://stmsports.ca/mens-basketball/standings",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "8bc894711ff04da1af1aba0a1e4042cf37b347d58b61d839e7e313b2310e9462"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "f5d025bf6aa22e1dae6f02b325b29165851af4e963f75ee72c4d4fe3319de48f"
     },
     {
       "label": "team",
       "url": "https://stmsports.ca/mens-basketball/teams/0dce2102-2b06-4750-b25d-8cbdba23d2c5",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "712fb45f02a5df1207cd7365e71dab4d7ce4e1eefbf0269e152dadc7a60db8d5"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "ab493fcf5a1c210da9bab15d39ba83c6489b8a491b5aabb49fb890e12028dad1"
     },
     {
       "label": "stats",
       "url": "https://stmsports.ca/mens-basketball/stats",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "b603cb248e7ff16b84d18b59653ed75747c7d36aa68c22b3911b6c4b10c42826"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "b17b2d38d7cb60e049678efd4eb8aefb2907f9a6074b72aca93e295f4fb46873"
     },
     {
       "label": "youtube-channel",
       "url": "https://www.youtube.com/@STMSports-t3z",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "d0d10552be4798d746a3e628f9c180f5876c8e1e145a625ae04379987554a572"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "e2c8d4e55acbc299cedb2adf21025b116b9f88b8bd1fe1e548d0d79dfccde7ac"
     },
     {
       "label": "box-score-ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
       "url": "https://stmsports.ca/mens-basketball/game/ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "b918e526440417ec0c19e62d5e519a12272027ef4ea2295f6cafc550059942d8"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "4a0ebf9d58dd5ef2e9e334eb03ba5d46ca3e471d23078c1921be4c7bd827460d"
     },
     {
       "label": "box-score-7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
       "url": "https://stmsports.ca/mens-basketball/game/7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "4932b0206bc8315451080f818dd272f3d7d99eb1b2e2f19fae37ace420135bdf"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "eab4a47758487d49246246f6d031cc3193fcd1e58a627f283fb2a23e4ffeab9a"
     },
     {
       "label": "box-score-90ab0f6d-44c3-4436-b974-1b31619809a6",
       "url": "https://stmsports.ca/mens-basketball/game/90ab0f6d-44c3-4436-b974-1b31619809a6",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "980025b1661297e4e7a4b23c86c03d77ee43c08f92e98fe1d499568a54ba8508"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "5ab798e431d134da39e89240792fb1a15e56b273e863bed85e8c6ec7e81c67c8"
     },
     {
       "label": "box-score-745149a8-f5af-4f58-95e2-bf627da96d07",
       "url": "https://stmsports.ca/mens-basketball/game/745149a8-f5af-4f58-95e2-bf627da96d07",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "870f7ccf4d0232aab9abd5094f5266cb7dd2dca86d553cdef4b9b25fc93d4509"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "8c781f1a792eeed778d41fb845d1c8fee3bbd30fd5f07568cfd1e4661b531637"
     },
     {
       "label": "box-score-318877d4-c504-450b-af66-e66c3f811a82",
       "url": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
-      "checkedAt": "2026-08-06T06:04:41.506Z",
-      "hash": "387692ed22f1e08aa26976ba7e1d26bbfc8740608f8b7afedeb27beda8f34695"
+      "checkedAt": "2026-08-07T00:44:32.911Z",
+      "hash": "251e6cd9d3030626aaba705d81215eb0f2cdd478cb1e22b52de6a374c6c78eb1"
     }
   ],
   "games": [
@@ -2851,14 +2851,14 @@
       "date": "2026-08-06",
       "scheduledAt": "2026-08-06T20:00:00",
       "displayTime": "20:00",
-      "state": "scheduled",
+      "state": "forfeit",
       "opponentId": "2d6e9496-b8bc-4e0a-bd18-e4fc56e3cf66",
       "opponentName": "Team 6",
       "venue": null,
       "isHome": false,
-      "teamScore": null,
-      "opponentScore": null,
-      "result": null,
+      "teamScore": 10,
+      "opponentScore": 0,
+      "result": "W",
       "officialUrl": "https://stmsports.ca/mens-basketball/game/c422bcdc-32ac-42f1-b8e3-b8ce49fd8b05",
       "hasBoxScore": false,
       "video": {
