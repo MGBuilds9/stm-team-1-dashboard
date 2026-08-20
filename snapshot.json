@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-08-18T03:57:34.975Z",
-  "contentHash": "90c2a4383f91973619d7cce75522cabc6307b6b66718cf047f0dbf073cc8173d",
+  "generatedAt": "2026-08-20T03:58:35.437Z",
+  "contentHash": "f56691182454035e37bf6d6ba37d4c7bd3373abe9c4112678fba5cf79ae069c2",
   "identity": {
     "provider": "stm",
     "leagueId": "mens-basketball",
@@ -165,14 +165,14 @@
       "rank": 1,
       "teamId": "stm-team-2",
       "teamName": "Team 2",
-      "wins": 7,
+      "wins": 8,
       "losses": 1,
-      "gamesPlayed": 8,
-      "winPct": 0.875,
-      "pointsFor": 540,
-      "pointsAgainst": 518,
-      "differential": 22,
-      "streak": "W2"
+      "gamesPlayed": 9,
+      "winPct": 0.889,
+      "pointsFor": 625,
+      "pointsAgainst": 592,
+      "differential": 33,
+      "streak": "W3"
     },
     {
       "rank": 2,
@@ -205,13 +205,13 @@
       "teamId": "stm-team-5",
       "teamName": "Team 5",
       "wins": 3,
-      "losses": 5,
-      "gamesPlayed": 8,
-      "winPct": 0.375,
-      "pointsFor": 505,
-      "pointsAgainst": 551,
-      "differential": -46,
-      "streak": "W1"
+      "losses": 6,
+      "gamesPlayed": 9,
+      "winPct": 0.33299999999999996,
+      "pointsFor": 579,
+      "pointsAgainst": 636,
+      "differential": -57,
+      "streak": "L1"
     },
     {
       "rank": 5,
@@ -302,7 +302,7 @@
       "label": "Rebounds",
       "playerName": "Peter Gouda",
       "teamName": "Team 2",
-      "value": 20.3,
+      "value": 21.3,
       "unit": "RPG",
       "tied": false
     },
@@ -320,9 +320,9 @@
       "label": "Steals",
       "playerName": "Markmeena Makcemus",
       "teamName": "Team 2",
-      "value": 3.8,
+      "value": 3.2,
       "unit": "SPG",
-      "tied": false
+      "tied": true
     },
     {
       "category": "bpg",
@@ -1156,8 +1156,8 @@
             }
           },
           {
-            "playerId": "mmmina-morcos-10",
-            "playerName": "MMMina Morcos",
+            "playerId": "mina-morcos-10",
+            "playerName": "Mina Morcos",
             "jersey": 10,
             "points": 2,
             "rebounds": 2,
@@ -1183,9 +1183,9 @@
             }
           },
           {
-            "playerId": "mmmichael-morcos-13",
-            "playerName": "MMMichael Morcos",
-            "jersey": 13,
+            "playerId": "michael-morcos-32",
+            "playerName": "Michael Morcos",
+            "jersey": 32,
             "points": 2,
             "rebounds": 3,
             "assists": 2,
@@ -2657,62 +2657,62 @@
     {
       "label": "schedule",
       "url": "https://stmsports.ca/mens-basketball/schedule?view=all",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "735c343643e198f8fc4fb49c8a048f70b777f458adfb4cb60eae50197bff603e"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "e77ff4308e18c7fd61a686a767c759ece46813e746eecbb6d2daeae2205f4b40"
     },
     {
       "label": "standings",
       "url": "https://stmsports.ca/mens-basketball/standings",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "1b218f70d3403e45dbccef076cd678a18ae4c337d6b00992c3bbfd1f05479aca"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "9871865bb54e6c992a39d9d877f9fc9151d60c5cb648d103e14f9c8233ae6592"
     },
     {
       "label": "team",
       "url": "https://stmsports.ca/mens-basketball/teams/0dce2102-2b06-4750-b25d-8cbdba23d2c5",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "2f9c9dae05a37079b304265d23e3b2cafe14b0222992f979167f81418391f596"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "050e92e5b1f796c33e1296e26fccffce1d6db5ae7b1e1c13aba29660f54593e6"
     },
     {
       "label": "stats",
       "url": "https://stmsports.ca/mens-basketball/stats",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "09eba835939152a2779e82da71b11134f8373bbd90755c25836a36b8b365a2a4"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "f1c48542568f6a17da29aba5afcfefa381936ae585ce7048810e44070175fccd"
     },
     {
       "label": "youtube-channel",
       "url": "https://www.youtube.com/@STMSports-t3z",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "13f44bccc9010ba2edba3102d420288fa8d2b336a64f1930bfe101ada75b0bd7"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "1e2c9fff09c45783c0097022e3d30c9d4fb4b972831561fdd3a438cdfd8193e5"
     },
     {
       "label": "box-score-ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
       "url": "https://stmsports.ca/mens-basketball/game/ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "5687841d42c064478ff2a6ece1f39f9455c8eb8c161d36a7282569d0232f27d1"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "312bd2985d2bbe5b6e236982e02d8c4ce5c260a8b04a6fe6a5f85109b9667ba6"
     },
     {
       "label": "box-score-7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
       "url": "https://stmsports.ca/mens-basketball/game/7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "dd7ac5694f512fb84969ef8d1c184917c518037443e85b9b4f35a904c0ac2668"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "242ec83bd0761ec994e160a4adec95942926284098e8fc2debe2d7480a398a43"
     },
     {
       "label": "box-score-90ab0f6d-44c3-4436-b974-1b31619809a6",
       "url": "https://stmsports.ca/mens-basketball/game/90ab0f6d-44c3-4436-b974-1b31619809a6",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "9557200766598bd27afd07e207ff42b8a0f42cd3a7b1deefefd6473dca7d9657"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "dfe9950af547f0e03ee0604f94fc83d0ffd20066639a4950c9a9af4dbae015f6"
     },
     {
       "label": "box-score-745149a8-f5af-4f58-95e2-bf627da96d07",
       "url": "https://stmsports.ca/mens-basketball/game/745149a8-f5af-4f58-95e2-bf627da96d07",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "d90af904d37fc5e66234b9f633eb3dbc89cf9b10d726bdb1d951a05cb401d5d2"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "894c922a6eabb63a0dd0d698e16fc5b36237126b8e8b8818f59b267511cbdbde"
     },
     {
       "label": "box-score-318877d4-c504-450b-af66-e66c3f811a82",
       "url": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
-      "checkedAt": "2026-08-18T03:57:34.975Z",
-      "hash": "2d1b0c740817524dd747c0d86af7c15db2951589d6617a58df8bbb8f0b415757"
+      "checkedAt": "2026-08-20T03:58:35.437Z",
+      "hash": "be3ec29b3f1cdfabbfbf0dc266763b4543abe53ba67d61213fc87c7c9633ea90"
     }
   ],
   "games": [
