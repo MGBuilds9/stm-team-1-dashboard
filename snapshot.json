@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-08-20T03:58:35.437Z",
-  "contentHash": "f56691182454035e37bf6d6ba37d4c7bd3373abe9c4112678fba5cf79ae069c2",
+  "generatedAt": "2026-08-21T03:59:52.941Z",
+  "contentHash": "c9843ad91fd126a25251d44e9289c4cdb6f1eeb4da464265bc19f85526dac1e7",
   "identity": {
     "provider": "stm",
     "leagueId": "mens-basketball",
@@ -25,11 +25,11 @@
     "id": "0dce2102-2b06-4750-b25d-8cbdba23d2c5",
     "name": "Semi-Uncs",
     "season": "Summer 2026",
-    "wins": 4,
-    "losses": 3,
-    "pointsFor": 416,
-    "pointsAgainst": 323,
-    "differential": 93,
+    "wins": 5,
+    "losses": 4,
+    "pointsFor": 563,
+    "pointsAgainst": 469,
+    "differential": 94,
     "standing": 3
   },
   "roster": [
@@ -37,85 +37,85 @@
       "id": "shady-bishay-5",
       "name": "Shady Bishay",
       "jersey": 5,
-      "gamesPlayed": 4,
-      "ppg": 21.5,
-      "rpg": 8,
-      "apg": 4.3,
+      "gamesPlayed": 6,
+      "ppg": 21,
+      "rpg": 8.2,
+      "apg": 4.2,
       "spg": 1,
-      "bpg": 0.8,
-      "fgPct": 46.5,
-      "threePct": 38.1,
-      "ftPct": 80
+      "bpg": 0.5,
+      "fgPct": 47.9,
+      "threePct": 44.1,
+      "ftPct": 88.9
     },
     {
       "id": "alfred-bishay-3",
       "name": "Alfred Bishay",
       "jersey": 3,
-      "gamesPlayed": 5,
-      "ppg": 16.8,
-      "rpg": 6.4,
-      "apg": 3.6,
-      "spg": 0.8,
-      "bpg": 0.2,
-      "fgPct": 36.3,
-      "threePct": 39.5,
-      "ftPct": 78.6
-    },
-    {
-      "id": "ramy-bishay-20",
-      "name": "Ramy Bishay",
-      "jersey": 20,
-      "gamesPlayed": 5,
-      "ppg": 13.4,
-      "rpg": 13.6,
-      "apg": 2.2,
-      "spg": 1.4,
-      "bpg": 2.2,
-      "fgPct": 52.7,
-      "threePct": 0,
-      "ftPct": 69.2
+      "gamesPlayed": 7,
+      "ppg": 16,
+      "rpg": 6.7,
+      "apg": 3.4,
+      "spg": 0.7,
+      "bpg": 0.4,
+      "fgPct": 35.6,
+      "threePct": 38.8,
+      "ftPct": 65.5
     },
     {
       "id": "michael-guirguis-10",
       "name": "Michael Guirguis",
       "jersey": 10,
-      "gamesPlayed": 4,
-      "ppg": 12.8,
-      "rpg": 8.5,
-      "apg": 5.5,
-      "spg": 0.3,
-      "bpg": 0.5,
-      "fgPct": 52.4,
-      "threePct": 23.1,
-      "ftPct": 57.1
+      "gamesPlayed": 6,
+      "ppg": 14.2,
+      "rpg": 8,
+      "apg": 5,
+      "spg": 0.7,
+      "bpg": 0.3,
+      "fgPct": 53.3,
+      "threePct": 25,
+      "ftPct": 70.8
+    },
+    {
+      "id": "ramy-bishay-20",
+      "name": "Ramy Bishay",
+      "jersey": 20,
+      "gamesPlayed": 7,
+      "ppg": 12.6,
+      "rpg": 12.6,
+      "apg": 2.9,
+      "spg": 1.3,
+      "bpg": 1.9,
+      "fgPct": 51.4,
+      "threePct": 25,
+      "ftPct": 68.8
     },
     {
       "id": "david-elsabawy-8",
       "name": "David Elsabawy",
       "jersey": 8,
-      "gamesPlayed": 4,
-      "ppg": 12.5,
-      "rpg": 2.8,
-      "apg": 2.8,
-      "spg": 0.5,
-      "bpg": 0.3,
-      "fgPct": 36.4,
-      "threePct": 40.6,
-      "ftPct": 100
+      "gamesPlayed": 6,
+      "ppg": 11,
+      "rpg": 4.7,
+      "apg": 2.5,
+      "spg": 0.3,
+      "bpg": 0.2,
+      "fgPct": 30.3,
+      "threePct": 34,
+      "ftPct": 81.8
     },
     {
       "id": "kiro-bassilious-3",
       "name": "Kiro Bassilious",
       "jersey": 3,
-      "gamesPlayed": 3,
-      "ppg": 8.7,
-      "rpg": 2,
-      "apg": 1.3,
-      "spg": 0.7,
+      "gamesPlayed": 4,
+      "ppg": 7.8,
+      "rpg": 1.5,
+      "apg": 1,
+      "spg": 0.8,
       "bpg": 0,
-      "fgPct": 40,
-      "threePct": 43.8,
-      "ftPct": 75
+      "fgPct": 42.9,
+      "threePct": 47.1,
+      "ftPct": 83.3
     },
     {
       "id": "kero-naguib-29",
@@ -135,14 +135,14 @@
       "id": "karim-malek-5",
       "name": "Karim Malek",
       "jersey": 5,
-      "gamesPlayed": 5,
-      "ppg": 3.4,
+      "gamesPlayed": 6,
+      "ppg": 3.3,
       "rpg": 1.2,
-      "apg": 1,
-      "spg": 0.4,
+      "apg": 0.8,
+      "spg": 0.3,
       "bpg": 0,
-      "fgPct": 40,
-      "threePct": 38.5,
+      "fgPct": 41.2,
+      "threePct": 40,
       "ftPct": 0
     },
     {
@@ -165,40 +165,40 @@
       "rank": 1,
       "teamId": "stm-team-2",
       "teamName": "Team 2",
-      "wins": 8,
+      "wins": 9,
       "losses": 1,
-      "gamesPlayed": 9,
-      "winPct": 0.889,
-      "pointsFor": 625,
-      "pointsAgainst": 592,
-      "differential": 33,
-      "streak": "W3"
+      "gamesPlayed": 10,
+      "winPct": 0.9,
+      "pointsFor": 688,
+      "pointsAgainst": 650,
+      "differential": 38,
+      "streak": "W4"
     },
     {
       "rank": 2,
       "teamId": "stm-team-3",
       "teamName": "Team 3",
       "wins": 6,
-      "losses": 2,
-      "gamesPlayed": 8,
-      "winPct": 0.75,
-      "pointsFor": 572,
-      "pointsAgainst": 504,
-      "differential": 68,
-      "streak": "L1"
+      "losses": 3,
+      "gamesPlayed": 9,
+      "winPct": 0.667,
+      "pointsFor": 655,
+      "pointsAgainst": 593,
+      "differential": 62,
+      "streak": "L2"
     },
     {
       "rank": 3,
       "teamId": "0dce2102-2b06-4750-b25d-8cbdba23d2c5",
       "teamName": "Semi-Uncs",
-      "wins": 4,
-      "losses": 3,
-      "gamesPlayed": 7,
-      "winPct": 0.5710000000000001,
-      "pointsFor": 416,
-      "pointsAgainst": 323,
-      "differential": 93,
-      "streak": "W2"
+      "wins": 5,
+      "losses": 4,
+      "gamesPlayed": 9,
+      "winPct": 0.556,
+      "pointsFor": 563,
+      "pointsAgainst": 469,
+      "differential": 94,
+      "streak": "L1"
     },
     {
       "rank": 4,
@@ -246,7 +246,7 @@
       "label": "Points",
       "playerName": "Shady Bishay",
       "teamName": "Semi-Uncs",
-      "value": 21.5,
+      "value": 21,
       "unit": "PPG",
       "tied": false
     },
@@ -255,7 +255,7 @@
       "label": "Rebounds",
       "playerName": "Ramy Bishay",
       "teamName": "Semi-Uncs",
-      "value": 13.6,
+      "value": 12.6,
       "unit": "RPG",
       "tied": false
     },
@@ -264,7 +264,7 @@
       "label": "Assists",
       "playerName": "Michael Guirguis",
       "teamName": "Semi-Uncs",
-      "value": 5.5,
+      "value": 5,
       "unit": "APG",
       "tied": false
     },
@@ -282,7 +282,7 @@
       "label": "Blocks",
       "playerName": "Ramy Bishay",
       "teamName": "Semi-Uncs",
-      "value": 2.2,
+      "value": 1.9,
       "unit": "BPG",
       "tied": false
     }
@@ -302,7 +302,7 @@
       "label": "Rebounds",
       "playerName": "Peter Gouda",
       "teamName": "Team 2",
-      "value": 21.3,
+      "value": 20.4,
       "unit": "RPG",
       "tied": false
     },
@@ -318,18 +318,18 @@
     {
       "category": "spg",
       "label": "Steals",
-      "playerName": "Markmeena Makcemus",
-      "teamName": "Team 2",
+      "playerName": "Youssef Rofail",
+      "teamName": "Team 4",
       "value": 3.2,
       "unit": "SPG",
-      "tied": true
+      "tied": false
     },
     {
       "category": "bpg",
       "label": "Blocks",
       "playerName": "Ramy Bishay",
       "teamName": "Team 1",
-      "value": 2.2,
+      "value": 1.9,
       "unit": "BPG",
       "tied": false
     }
@@ -2657,62 +2657,62 @@
     {
       "label": "schedule",
       "url": "https://stmsports.ca/mens-basketball/schedule?view=all",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "e77ff4308e18c7fd61a686a767c759ece46813e746eecbb6d2daeae2205f4b40"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "8efb618f014dd04bdd2f34c91871182ec2111bec4053192f81fddfe6e8af969d"
     },
     {
       "label": "standings",
       "url": "https://stmsports.ca/mens-basketball/standings",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "9871865bb54e6c992a39d9d877f9fc9151d60c5cb648d103e14f9c8233ae6592"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "9e75f899bb44e25e1d102ff283fa3a677e02f75083fbd65ed417c2f62c156bdd"
     },
     {
       "label": "team",
       "url": "https://stmsports.ca/mens-basketball/teams/0dce2102-2b06-4750-b25d-8cbdba23d2c5",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "050e92e5b1f796c33e1296e26fccffce1d6db5ae7b1e1c13aba29660f54593e6"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "4108e347536ac3d765b4b8406a69e3346f80716e03b7e36b829ae611206047a1"
     },
     {
       "label": "stats",
       "url": "https://stmsports.ca/mens-basketball/stats",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "f1c48542568f6a17da29aba5afcfefa381936ae585ce7048810e44070175fccd"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "e79fe5bdd68e2d31a924b4953b4974a51942938598876a83e8eebc23a3342e37"
     },
     {
       "label": "youtube-channel",
       "url": "https://www.youtube.com/@STMSports-t3z",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "1e2c9fff09c45783c0097022e3d30c9d4fb4b972831561fdd3a438cdfd8193e5"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "67cdd9d0400c42b0dd99b12090402e0a2e122c335202c3e495000310f506ce6d"
     },
     {
       "label": "box-score-ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
       "url": "https://stmsports.ca/mens-basketball/game/ecbe5296-d355-4d8a-abf5-6ba6f73d2964",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "312bd2985d2bbe5b6e236982e02d8c4ce5c260a8b04a6fe6a5f85109b9667ba6"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "0bd04aaa53f10f907ff4da928e051122b18fc0a90219d36768add64a5d9a8038"
     },
     {
       "label": "box-score-7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
       "url": "https://stmsports.ca/mens-basketball/game/7be8e47e-2cc8-47f1-a6a7-04d552b4b8ba",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "242ec83bd0761ec994e160a4adec95942926284098e8fc2debe2d7480a398a43"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "4f2d41fa12509e3c82108a67cb7278f7f7eed299a901fbc2b6f950f217f5a5a8"
     },
     {
       "label": "box-score-90ab0f6d-44c3-4436-b974-1b31619809a6",
       "url": "https://stmsports.ca/mens-basketball/game/90ab0f6d-44c3-4436-b974-1b31619809a6",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "dfe9950af547f0e03ee0604f94fc83d0ffd20066639a4950c9a9af4dbae015f6"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "6f47ab53f7c6c093d333715444674cc8da9000f4da81f53148736f40288690fb"
     },
     {
       "label": "box-score-745149a8-f5af-4f58-95e2-bf627da96d07",
       "url": "https://stmsports.ca/mens-basketball/game/745149a8-f5af-4f58-95e2-bf627da96d07",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "894c922a6eabb63a0dd0d698e16fc5b36237126b8e8b8818f59b267511cbdbde"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "b875fdae8eb6e430d189225321344f8f5d5d8f42133c882d1203457447a88815"
     },
     {
       "label": "box-score-318877d4-c504-450b-af66-e66c3f811a82",
       "url": "https://stmsports.ca/mens-basketball/game/318877d4-c504-450b-af66-e66c3f811a82",
-      "checkedAt": "2026-08-20T03:58:35.437Z",
-      "hash": "be3ec29b3f1cdfabbfbf0dc266763b4543abe53ba67d61213fc87c7c9633ea90"
+      "checkedAt": "2026-08-21T03:59:52.941Z",
+      "hash": "ef007d45754334b60c3cff9f9e35e330ac20580ee3c9ab9e3f44d07497872917"
     }
   ],
   "games": [
